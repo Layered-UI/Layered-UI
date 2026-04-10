@@ -9,7 +9,7 @@ Add the Layered registry namespace to your `components.json`.
 ```json
 {
 	"registries": {
-	  "@layered": "https://layered-blocks.vercel.app/r/{name}.json"
+	  "@layeredui": "https://layered-blocks.vercel.app/r/{name}.json"
 	}
 }
 ```
@@ -18,18 +18,18 @@ Learn more about registry config from [Shadcn UI docs](https://shadcn-ui.com/doc
 
 ## Usage
 
-Install blocks via the shadcn CLI using the `@layered/{name}` syntax.
+Install blocks via the shadcn CLI using the `@layeredui/{name}` syntax.
 
 ```bash
-pnpm dlx shadcn add @layered/hero-section-1
+pnpm dlx shadcn add @layeredui/hero-section-1
 ```
 
 Install other blocks the same way:
 
 ```bash
-pnpm dlx shadcn add @layered/contact-1
-pnpm dlx shadcn add @layered/pricing-1
-pnpm dlx shadcn add @layered/features-1
+pnpm dlx shadcn add @layeredui/contact-1
+pnpm dlx shadcn add @layeredui/pricing-1
+pnpm dlx shadcn add @layeredui/features-1
 ```
 
 Don't guess the block name, copy the CLI command from each block on its category page.
