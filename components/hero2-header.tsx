@@ -3,7 +3,8 @@
 import { ChevronRight } from 'lucide-react'
 import { motion, type Variants } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
-import { useRef, useCallback, ReactNode } from 'react'
+import { useRef, useCallback, useState, useEffect, ReactNode } from 'react'
+import { useTheme } from 'next-themes'
 
 const animatedGroupVariants: Variants = {
   hidden: { opacity: 0 },
@@ -105,6 +106,9 @@ function AnimatedText({ text }: { text: string }) {
   return (
     <motion.span
       className="inline-block"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       variants={textEffectVariants}
     >
       {words.map((word, wordIndex) => (
@@ -127,6 +131,14 @@ function AnimatedText({ text }: { text: string }) {
 
 export function Hero2(): ReactNode {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState<boolean>(false)
+  const { resolvedTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = mounted && resolvedTheme === 'dark'
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>): void => {
     if (!containerRef.current) return
@@ -146,11 +158,20 @@ export function Hero2(): ReactNode {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative mx-4 max-w-7xl border-x px-4 py-16 overflow-hidden rounded-3xl bg-white transition-colors duration-500 [--color-border:color-mix(in_oklab,var(--color-zinc-200)_75%,transparent)] md:mx-auto dark:bg-zinc-950 dark:border-zinc-800"
+      className="relative mx-4 max-w-7xl border-x px-4 py-16 overflow-hidden rounded-3xl transition-colors duration-500 [--color-border:color-mix(in_oklab,var(--color-zinc-200)_75%,transparent)] md:mx-auto dark:[--color-border:color-mix(in_oklab,var(--color-zinc-800)_60%,transparent)]"
+      style={{
+        background: isDark ? '#0a0a0a' : '#ffffff',
+      }}
     >
       {/* Vertical Lines Pattern */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.015] bg-[linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[length:80px_100%] dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]"
+        className="absolute inset-0 pointer-events-none opacity-[0.015]"
+        style={{
+          backgroundImage: isDark
+            ? 'linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)'
+            : 'linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)',
+          backgroundSize: '80px 100%',
+        }}
       />
 
       {/* Subtle Grain Texture */}
@@ -163,33 +184,70 @@ export function Hero2(): ReactNode {
 
       {/* Circular blur effect - Top Left */}
       <div
-        className="absolute -top-1/4 -left-1/4 h-1/2 w-1/2 pointer-events-none bg-[radial-gradient(circle,rgba(100,100,120,0.15)_0%,transparent_70%)] blur-[80px] dark:bg-[radial-gradient(circle,rgba(80,80,100,0.3)_0%,transparent_70%)]"
+        className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 pointer-events-none"
+        style={{
+          background: isDark
+            ? `radial-gradient(circle, rgba(80, 80, 100, 0.3) 0%, transparent 70%)`
+            : `radial-gradient(circle, rgba(100, 100, 120, 0.15) 0%, transparent 70%)`,
+          filter: 'blur(80px)',
+        }}
       />
 
       {/* Circular blur effect - Top Right */}
       <div
-        className="absolute -top-1/4 -right-1/4 h-1/2 w-1/2 pointer-events-none bg-[radial-gradient(circle,rgba(80,80,100,0.12)_0%,transparent_70%)] blur-[100px] dark:bg-[radial-gradient(circle,rgba(60,60,80,0.25)_0%,transparent_70%)]"
+        className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 pointer-events-none"
+        style={{
+          background: isDark
+            ? `radial-gradient(circle, rgba(60, 60, 80, 0.25) 0%, transparent 70%)`
+            : `radial-gradient(circle, rgba(80, 80, 100, 0.12) 0%, transparent 70%)`,
+          filter: 'blur(100px)',
+        }}
       />
 
       {/* Circular blur effect - Bottom Center */}
       <div
-        className="absolute -bottom-1/4 left-1/2 h-1/2 w-3/4 -translate-x-1/2 pointer-events-none bg-[radial-gradient(circle,rgba(90,90,110,0.1)_0%,transparent_70%)] blur-[120px] dark:bg-[radial-gradient(circle,rgba(70,70,90,0.2)_0%,transparent_70%)]"
+        className="absolute -bottom-1/4 left-1/2 -translate-x-1/2 w-3/4 h-1/2 pointer-events-none"
+        style={{
+          background: isDark
+            ? `radial-gradient(circle, rgba(70, 70, 90, 0.2) 0%, transparent 70%)`
+            : `radial-gradient(circle, rgba(90, 90, 110, 0.1) 0%, transparent 70%)`,
+          filter: 'blur(120px)',
+        }}
       />
 
       {/* Circular blur effect - Bottom Left */}
       <div
-        className="absolute bottom-0 -left-1/3 h-2/3 w-1/2 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(100,100,130,0.12)_0%,transparent_65%)] blur-[90px] dark:bg-[radial-gradient(circle_at_center,rgba(50,50,70,0.35)_0%,transparent_65%)]"
+        className="absolute bottom-0 -left-1/3 w-1/2 h-2/3 pointer-events-none"
+        style={{
+          background: isDark
+            ? `radial-gradient(circle at center, rgba(50, 50, 70, 0.35) 0%, transparent 65%)`
+            : `radial-gradient(circle at center, rgba(100, 100, 130, 0.12) 0%, transparent 65%)`,
+          filter: 'blur(90px)',
+        }}
       />
 
       {/* Circular blur effect - Bottom Right */}
       <div
-        className="absolute bottom-0 -right-1/3 h-2/3 w-1/2 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(90,90,120,0.1)_0%,transparent_70%)] blur-[100px] dark:bg-[radial-gradient(circle_at_center,rgba(40,40,60,0.3)_0%,transparent_70%)]"
+        className="absolute bottom-0 -right-1/3 w-1/2 h-2/3 pointer-events-none"
+        style={{
+          background: isDark
+            ? `radial-gradient(circle at center, rgba(40, 40, 60, 0.3) 0%, transparent 70%)`
+            : `radial-gradient(circle at center, rgba(90, 90, 120, 0.1) 0%, transparent 70%)`,
+          filter: 'blur(100px)',
+        }}
       />
 
       {/* Large Background Text - Mobile */}
       <div className="absolute inset-0 flex items-end justify-center pointer-events-none overflow-hidden md:hidden pb-4">
         <motion.span
-          className="whitespace-nowrap bg-[linear-gradient(90deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.08)_50%,transparent_100%)] bg-clip-text text-center text-[100px] font-black leading-[0.9] tracking-[-0.03em] text-transparent select-none sm:text-[140px] dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.08)_50%,transparent_100%)]"
+          className="text-[100px] sm:text-[140px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none whitespace-nowrap"
+          style={{
+            backgroundImage: isDark
+              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%)'
+              : 'linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, transparent 100%)',
+            letterSpacing: '-0.03em',
+            lineHeight: '0.9',
+          }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
@@ -201,7 +259,14 @@ export function Hero2(): ReactNode {
       {/* Large Background Text - Tablet */}
       <div className="absolute inset-0 hidden md:flex lg:hidden items-end justify-center pointer-events-none overflow-hidden pb-6">
         <motion.span
-          className="bg-[linear-gradient(90deg,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.05)_50%,transparent_100%)] bg-clip-text text-center text-[200px] font-black leading-[0.9] tracking-[-0.03em] text-transparent select-none dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]"
+          className="text-[200px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none"
+          style={{
+            backgroundImage: isDark
+              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%)'
+              : 'linear-gradient(90deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.05) 50%, transparent 100%)',
+            letterSpacing: '-0.03em',
+            lineHeight: '0.9',
+          }}
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
@@ -213,7 +278,14 @@ export function Hero2(): ReactNode {
       {/* Large Background Text - Desktop */}
       <div className="absolute inset-0 hidden lg:flex items-end justify-center pointer-events-none overflow-hidden pb-8">
         <motion.span
-          className="bg-[linear-gradient(90deg,rgba(0,0,0,0.16)_0%,rgba(0,0,0,0.06)_50%,transparent_100%)] bg-clip-text text-center text-[320px] font-black leading-[0.9] tracking-[-0.03em] text-transparent select-none dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0.06)_50%,transparent_100%)]"
+          className="text-[320px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none"
+          style={{
+            backgroundImage: isDark
+              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%)'
+              : 'linear-gradient(90deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.06) 50%, transparent 100%)',
+            letterSpacing: '-0.03em',
+            lineHeight: '0.9',
+          }}
           initial={{ opacity: 0, y: 120 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
@@ -226,7 +298,7 @@ export function Hero2(): ReactNode {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 overflow-hidden">
         <div className="z-10 flex flex-col">
           <div className="grid grid-cols-1">
-            <motion.div 
+            <motion.div
               className="flex flex-col items-center gap-8 text-center"
               initial="hidden"
               whileInView="visible"
@@ -244,6 +316,9 @@ export function Hero2(): ReactNode {
               {/* Badge - Animated Group */}
               <motion.div
                 className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 variants={animatedGroupVariants}
               >
                 <motion.div className="flex items-center" variants={groupItemVariants}>
@@ -262,8 +337,11 @@ export function Hero2(): ReactNode {
               </motion.div>
 
               {/* Main Heading - Text Effect Animation */}
-              <motion.div 
+              <motion.div
                 className="flex flex-col gap-4 items-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 variants={{
                   visible: {
                     transition: {
@@ -273,7 +351,7 @@ export function Hero2(): ReactNode {
                   },
                 }}
               >
-                <motion.div 
+                <motion.div
                   className="w-full"
                   variants={{
                     hidden: { opacity: 0 },
@@ -284,7 +362,7 @@ export function Hero2(): ReactNode {
                     <AnimatedText text="Layered UI for" />
                   </h1>
                   <div className="flex items-center justify-center gap-2 mt-4 flex-col">
-                    <motion.h1 
+                    <motion.h1
                       className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black dark:text-white"
                       variants={{
                         hidden: { opacity: 0, y: 10 },
@@ -300,7 +378,7 @@ export function Hero2(): ReactNode {
                     >
                       <AnimatedText text="Design Engineers" />
                     </motion.h1>
-                    <motion.div 
+                    <motion.div
                       className="w-full max-w-sm overflow-hidden"
                       initial={{ opacity: 0, scaleX: 0 }}
                       whileInView={{ opacity: 1, scaleX: 1 }}
@@ -322,8 +400,11 @@ export function Hero2(): ReactNode {
               </motion.div>
 
               {/* Description */}
-              <motion.p 
+              <motion.p
                 className="text-gray-600 dark:text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 variants={descriptionVariants}
               >
                 Free and open-source component blocks and layouts built with{' '}
@@ -337,8 +418,11 @@ export function Hero2(): ReactNode {
               </motion.p>
 
               {/* CTA Buttons - Animated Group */}
-              <motion.div 
+              <motion.div
                 className="flex flex-col sm:flex-row gap-4 justify-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 variants={buttonGroupVariants}
               >
                 <motion.a
