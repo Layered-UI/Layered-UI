@@ -161,78 +161,24 @@ export function Hero2(): ReactNode {
       onMouseMove={handleMouseMove}
       className="relative mx-4 max-w-7xl border-x px-4 py-16 overflow-hidden rounded-3xl bg-card transition-colors duration-500 [--color-border:color-mix(in_oklab,var(--color-zinc-200)_75%,transparent)] md:mx-auto dark:border-zinc-800"
     >
-      {/* Vertical Lines Pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.015] bg-[length:80px_100%] bg-[linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]"
-      />
-
-      {/* Subtle Grain Texture */}
-      <div
-        className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Circular blur effect - Top Left */}
-      <div
-        className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 pointer-events-none bg-slate-500/15 dark:bg-slate-300/20 rounded-full blur-[80px]"
-      />
-
-      {/* Circular blur effect - Top Right */}
-      <div
-        className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 pointer-events-none bg-slate-500/10 dark:bg-slate-300/20 rounded-full blur-[100px]"
-      />
-
-      {/* Circular blur effect - Bottom Center */}
-      <div
-        className="absolute -bottom-1/4 left-1/2 -translate-x-1/2 w-3/4 h-1/2 pointer-events-none bg-slate-500/10 dark:bg-slate-300/20 rounded-full blur-[120px]"
-      />
-
-      {/* Circular blur effect - Bottom Left */}
-      <div
-        className="absolute bottom-0 -left-1/3 w-1/2 h-2/3 pointer-events-none bg-slate-500/10 dark:bg-slate-300/20 rounded-full blur-[90px]"
-      />
-
-      {/* Circular blur effect - Bottom Right */}
-      <div
-        className="absolute bottom-0 -right-1/3 w-1/2 h-2/3 pointer-events-none bg-slate-500/10 dark:bg-slate-300/20 rounded-full blur-[100px]"
-      />
-
-      {/* Large Background Text - Mobile */}
-      <div className="absolute inset-0 flex items-end justify-center pointer-events-none overflow-hidden md:hidden pb-4">
-        <motion.span
-          className="text-[100px] sm:text-[140px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none whitespace-nowrap bg-gradient-to-r from-black/20 via-black/10 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent leading-[0.9] tracking-[-0.03em]"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+      {/* Clean Minimalist Grid Pattern with Premium Edge Fade */}
+      <div className="absolute inset-0 pointer-events-none z-0 [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]">
+        <svg
+          className="absolute inset-0 h-full w-full stroke-zinc-900/10 dark:stroke-white/10"
+          fill="none"
         >
-          Layered
-        </motion.span>
-      </div>
-
-      {/* Large Background Text - Tablet */}
-      <div className="absolute inset-0 hidden md:flex lg:hidden items-end justify-center pointer-events-none overflow-hidden pb-6">
-        <motion.span
-          className="text-[200px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none bg-gradient-to-r from-black/15 via-black/5 to-transparent dark:from-white/15 dark:via-white/5 dark:to-transparent leading-[0.9] tracking-[-0.03em]"
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        >
-          Layered
-        </motion.span>
-      </div>
-
-      {/* Large Background Text - Desktop */}
-      <div className="absolute inset-0 hidden lg:flex items-end justify-center pointer-events-none overflow-hidden pb-8">
-        <motion.span
-          className="text-[320px] font-black tracking-tighter text-center text-transparent bg-clip-text select-none bg-gradient-to-r from-black/15 via-black/5 to-transparent dark:from-white/20 dark:via-white/5 dark:to-transparent leading-[0.9] tracking-[-0.03em]"
-          initial={{ opacity: 0, y: 120 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        >
-          Layered
-        </motion.span>
+          <defs>
+            <pattern
+              id="grid-pattern"
+              width="32"
+              height="32"
+              patternUnits="userSpaceOnUse"
+            >
+              <path d="M.5 32V.5H32" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+        </svg>
       </div>
 
       {/* Content */}
