@@ -30,6 +30,7 @@
     "cobe": "^2.0.1",
     "dotted-map": "^2.2.3",
     "embla-carousel-react": "^8.6.0",
+    "geist": "^1.7.0",
     "gsap": "^3.14.2",
     "hast-util-to-jsx-runtime": "^2.3.2",
     "lucide-react": "^0.475.0",
