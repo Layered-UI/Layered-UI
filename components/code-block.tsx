@@ -32,11 +32,10 @@ export interface CodeBlockProps {
 }
 
 export default function CodeBlock({ code, lang, initial, maxHeight, preHighlighted, className }: CodeBlockProps) {
-    const [content, setContent] = useState<JSX.Element | null>(preHighlighted || initial || null)
+    const [highlightedContent, setHighlightedContent] = useState<JSX.Element | null>(null)
 
     useLayoutEffect(() => {
         if (preHighlighted) {
-            setContent(preHighlighted)
             return
         }
 
@@ -44,16 +43,16 @@ export default function CodeBlock({ code, lang, initial, maxHeight, preHighlight
 
         if (code) {
             highlight(code, lang).then((result) => {
-                if (isMounted) setContent(result)
+                if (isMounted) setHighlightedContent(result)
             })
-        } else {
-            setContent(<pre className="rounded-lg bg-zinc-950 p-4">No code available</pre>)
         }
 
         return () => {
             isMounted = false
         }
     }, [code, lang, preHighlighted])
+
+    const content = preHighlighted || highlightedContent || initial || (code ? null : <pre className="rounded-lg bg-zinc-950 p-4">No code available</pre>)
 
     return content ? (
         <div

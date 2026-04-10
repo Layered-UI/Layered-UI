@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { X } from "lucide-react";
 
@@ -35,6 +35,28 @@ export const MobileNotification = () => {
     // Touch tracking
     const touchStartRef = useRef<number | null>(null);
     const touchCurrentRef = useRef<number | null>(null);
+
+    const dismissNotification = useCallback((direction: 'left' | 'right' = 'right') => {
+        if (!notificationRef.current) return;
+
+        if (timerIdRef.current) {
+            window.clearTimeout(timerIdRef.current);
+            timerIdRef.current = null;
+        }
+
+        const xTo = direction === 'right' ? "120%" : "-120%";
+
+        gsap.to(notificationRef.current, {
+            x: xTo,
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.4,
+            ease: "power2.in",
+            onComplete: () => {
+                setIsVisible(false);
+            },
+        });
+    }, []);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -75,29 +97,7 @@ export const MobileNotification = () => {
                 window.clearTimeout(timerIdRef.current);
             }
         };
-    }, [isVisible]);
-
-    const dismissNotification = (direction: 'left' | 'right' = 'right') => {
-        if (!notificationRef.current) return;
-
-        if (timerIdRef.current) {
-            window.clearTimeout(timerIdRef.current);
-            timerIdRef.current = null;
-        }
-
-        const xTo = direction === 'right' ? "120%" : "-120%";
-
-        gsap.to(notificationRef.current, {
-            x: xTo,
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.4,
-            ease: "power2.in",
-            onComplete: () => {
-                setIsVisible(false);
-            },
-        });
-    };
+    }, [dismissNotification, isVisible]);
 
     // Touch Handlers
     const handleTouchStart = (e: React.TouchEvent) => {
