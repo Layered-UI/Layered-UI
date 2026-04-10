@@ -1,6 +1,6 @@
 <img
   alt="Layered UI – shadcn UI blocks for SaaS & Marketing websites"
-  src="https://github.com/Layered-UI/Layered-UI/blob/main/public/LayeredUI.png"
+  src="./public/LayeredUI.png"
   width="100%"
 />
 
@@ -11,10 +11,10 @@
 </p>
 
 <div align="center">
-  <a href="https://github.com/Layered-UI/Layered-UI/stargazers">
-    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Layered-UI/Layered-UI">
+  <a href="https://github.com/KingTroy125/Layered-UI/stargazers">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/KingTroy125/Layered-UI">
   </a>
-  <a href="https://github.com/Layered-UI/Layered-UI/blob/main/LICENSE">
+  <a href="./LICENCE.md">
     <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg">
   </a>
 </div>
@@ -63,8 +63,8 @@ All components are easy to customize, accessible, and production-ready. You can 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/KingTroy125/Layered-Blocks.git
-cd Layered-Blocks
+git clone https://github.com/KingTroy125/Layered-UI.git
+cd Layered-UI
 ```
 
 ### 2. Install dependencies
