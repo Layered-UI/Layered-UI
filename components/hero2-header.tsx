@@ -3,7 +3,7 @@
 import { ChevronRight } from 'lucide-react'
 import { motion, type Variants } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
-import { useRef, useCallback, useState, useEffect, ReactNode } from 'react'
+import { useRef, useCallback, ReactNode } from 'react'
 import { useTheme } from 'next-themes'
 
 const animatedGroupVariants: Variants = {
@@ -131,14 +131,9 @@ function AnimatedText({ text }: { text: string }) {
 
 export function Hero2(): ReactNode {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState<boolean>(false)
   const { resolvedTheme } = useTheme()
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const isDark = mounted && resolvedTheme === 'dark'
+  const isDark = resolvedTheme === 'dark'
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>): void => {
     if (!containerRef.current) return

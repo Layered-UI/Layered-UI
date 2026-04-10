@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable react-hooks/static-components */
 import { ReactNode } from 'react'
 import { motion, Variants } from 'motion/react'
 import React from 'react'
@@ -90,6 +91,17 @@ const addDefaultVariants = (variants: Variants) => ({
     visible: { ...defaultItemVariants.visible, ...variants.visible },
 })
 
+const motionComponentCache = new Map<React.ElementType, React.ElementType>()
+
+const getMotionComponent = (component: React.ElementType) => {
+    const cached = motionComponentCache.get(component)
+    if (cached) return cached
+
+    const created = motion.create(component)
+    motionComponentCache.set(component, created)
+    return created
+}
+
 function AnimatedGroup({ children, className, variants, preset, as = 'div', asChild = 'div' }: AnimatedGroupProps) {
     const selectedVariants = {
         item: addDefaultVariants(preset ? presetVariants[preset] : {}),
@@ -98,9 +110,8 @@ function AnimatedGroup({ children, className, variants, preset, as = 'div', asCh
     const containerVariants = variants?.container || selectedVariants.container
     const itemVariants = variants?.item || selectedVariants.item
 
-    const MotionComponent = motion(as)
-
-    const MotionChild = motion(asChild)
+    const MotionComponent = getMotionComponent(as)
+    const MotionChild = getMotionComponent(asChild)
 
     return (
         <MotionComponent
