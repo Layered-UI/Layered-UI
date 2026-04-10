@@ -441,7 +441,7 @@ function BlockPreviewView() {
                 ref={resizablePanelRef}
                 onLayout={(layout) => setWidth(layout[0])}
             >
-                <Panel defaultSize={DEFAULT_SIZE} minSize={SM_SIZE} className="relative border-x">
+                <Panel id="preview-panel" order={1} defaultSize={DEFAULT_SIZE} minSize={SM_SIZE} className="relative border-x">
                     <div ref={blockRef} className="w-full relative">
                         {/* Show spinner while shouldLoadIframe is true but iframe hasn't finished loading yet */}
                         {shouldLoadIframe && !iframeLoaded && (
@@ -487,7 +487,7 @@ function BlockPreviewView() {
                 {isLarge && (
                     <>
                         <PanelResizeHandle className="relative w-2 before:absolute before:inset-0 before:m-auto before:h-12 before:w-1 before:rounded-full before:bg-zinc-300 before:transition-[height,background] hover:before:h-16 hover:before:bg-zinc-400 focus:before:bg-zinc-400 dark:before:bg-zinc-600 dark:hover:before:bg-zinc-500 dark:focus:before:bg-zinc-400" />
-                        <Panel defaultSize={0} minSize={0} className="-mr-[0.5px] ml-px" />
+                        <Panel id="spacer-panel" order={2} defaultSize={0} minSize={0} className="-mr-[0.5px] ml-px" />
                     </>
                 )}
             </PanelGroup>
