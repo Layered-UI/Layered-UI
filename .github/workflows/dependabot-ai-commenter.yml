@@ -1,0 +1,52 @@
+name: Auto-Analyze Dependabot PRs
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  analyze-update:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Fetch Dependabot Metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Generate AI-style Summary Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const updateType = '${{ steps.dependabot-metadata.outputs.update-type }}';
+            const dependencyNames = '${{ steps.dependabot-metadata.outputs.dependency-names }}';
+            const depType = '${{ steps.dependabot-metadata.outputs.dependency-type }}';
+            
+            let emoji = '📦';
+            let riskLevel = 'Low';
+            let recommendation = '✅ Safe to auto-merge based on semantic versioning.';
+            
+            if (updateType.includes('major')) {
+              emoji = '🚨';
+              riskLevel = 'High (Breaking Changes Possible)';
+              recommendation = '⚠️ **MANUAL REVIEW REQUIRED.** Major updates often contain breaking API changes. Please check the changelog.';
+            } else if (updateType.includes('minor')) {
+              emoji = '✨';
+              riskLevel = 'Medium';
+              recommendation = '🔍 Generally safe, but new features were added. CI tests will catch any edge cases.';
+            }
+
+            const body = `### ${emoji} AI Update Analysis\n\n` +
+              `**Target Packages:** \`${dependencyNames}\`\n` +
+              `**Update Type:** \`${updateType}\` (\`${depType}\`)\n` +
+              `**Risk Level:** ${riskLevel}\n\n` +
+              `**🤖 Bot Recommendation:**\n> ${recommendation}\n\n` +
+              `*Auto-merge will evaluate this PR based on these metrics and CI test results.*`;
+              
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });

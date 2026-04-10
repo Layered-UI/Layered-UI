@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+    # Group updates (clean PRs)
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+    # Limit PR spam
+    open-pull-requests-limit: 5
+
+    # Labels (optional but clean)
+    labels:
+      - "dependencies"
+      - "auto-update"

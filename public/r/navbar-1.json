@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-1",
+  "type": "registry:block",
+  "title": "Navbar 1",
+  "description": "Modern navbar for Layered Blocks",
+  "registryDependencies": [
+    "button",
+    "logo"
+  ],
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "app/preview/navbar/one/page.tsx",
+      "type": "registry:component",
+      "target": "components/navbar.tsx",
+      "content": "\"use client\";\n\nimport Link from \"next/link\";\nimport { Logo } from \"@/components/logo\";\nimport { Menu, X } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nconst navItems = [\"Home\", \"Features\", \"Integration\", \"Pricing\"];\n\nexport default function Navbar() {\n  const [menuOpen, setMenuOpen] = React.useState(false);\n\n  return (\n    <nav className=\"relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8\">\n      <div className=\"bg-background/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl px-4 sm:px-5 py-3 sm:py-4 flex items-center justify-between border border-border/50 shadow-lg shadow-primary/5\">\n        <Link href=\"/\" aria-label=\"home\">\n          <Logo />\n        </Link>\n\n        {/* Desktop Navigation */}\n        <div className=\"hidden md:flex items-center gap-6 lg:gap-8\">\n          {navItems.map((item) => (\n            <Link\n              key={item}\n              href=\"#\"\n              className=\"text-muted-foreground hover:text-foreground transition-colors text-sm\"\n            >\n              {item}\n            </Link>\n          ))}\n        </div>\n\n        {/* Desktop CTA */}\n        <div className=\"hidden md:block\">\n          <Button asChild size=\"sm\" className=\"rounded-full px-5\">\n            <Link href=\"#\">\n              <span>Get started</span>\n            </Link>\n          </Button>\n        </div>\n\n        {/* Mobile Menu Button */}\n        <button\n          onClick={() => setMenuOpen(!menuOpen)}\n          aria-label={menuOpen ? \"Close Menu\" : \"Open Menu\"}\n          className=\"relative z-20 -m-2 p-2 md:hidden\"\n        >\n          <Menu\n            className={cn(\n              \"size-6 transition-all duration-200\",\n              menuOpen && \"hidden\"\n            )}\n          />\n          <X\n            className={cn(\n              \"size-6 transition-all duration-200\",\n              !menuOpen && \"hidden\"\n            )}\n          />\n        </button>\n      </div>\n\n      {/* Mobile Menu */}\n      {menuOpen && (\n        <div className=\"md:hidden mt-3 bg-background rounded-2xl border border-border p-4 shadow-xl shadow-primary/5\">\n          <ul className=\"space-y-3\">\n            {navItems.map((item) => (\n              <li key={item}>\n                <Link\n                  href=\"#\"\n                  className=\"block text-muted-foreground hover:text-foreground transition-colors py-2\"\n                  onClick={() => setMenuOpen(false)}\n                >\n                  {item}\n                </Link>\n              </li>\n            ))}\n          </ul>\n          <div className=\"mt-4 pt-4 border-t border-border\">\n            <Button asChild className=\"w-full rounded-full\">\n              <Link href=\"#\">\n                <span>Get started</span>\n              </Link>\n            </Button>\n          </div>\n        </div>\n      )}\n    </nav>\n  );\n}"
+    },
+
+    {
+      "path": "components/logo.tsx",
+      "type": "registry:component",
+      "target": "components/logo.tsx",
+      "content": "import { cn } from '@/lib/utils'\n\nexport const Logo = ({ className }: { className?: string }) => {\n    return (\n        <svg\n            className={cn('size-7 w-7', className)}\n            viewBox=\"0 0 489 441\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\">\n            <rect \n                x=\"10\" \n                y=\"10\" \n                width=\"322\" \n                height=\"297\" \n                rx=\"41\" \n                stroke=\"currentColor\" \n                strokeWidth=\"20\"\n            />\n            <rect \n                x=\"157\" \n                y=\"134\" \n                width=\"322\" \n                height=\"297\" \n                rx=\"41\" \n                stroke=\"currentColor\" \n                strokeWidth=\"20\"\n            />\n            <path \n                d=\"M167 177C167 154.356 185.356 136 208 136H327V259C327 281.091 309.091 299 287 299H167V177Z\" \n                fill=\"currentColor\"\n            />\n        </svg>\n    )\n}\n\nexport const LogoStroke = ({ className }: { className?: string }) => {\n    return (\n        <svg\n            className={cn('size-7 w-7', className)}\n            viewBox=\"0 0 489 441\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\">\n            <rect \n                x=\"10\" \n                y=\"10\" \n                width=\"322\" \n                height=\"297\" \n                rx=\"41\" \n                stroke=\"currentColor\" \n                strokeWidth=\"20\"\n            />\n            <rect \n                x=\"157\" \n                y=\"134\" \n                width=\"322\" \n                height=\"297\" \n                rx=\"41\" \n                stroke=\"currentColor\" \n                strokeWidth=\"20\"\n            />\n            <path \n                d=\"M167 177C167 154.356 185.356 136 208 136H327V259C327 281.091 309.091 299 287 299H167V177Z\" \n                fill=\"none\"\n                stroke=\"currentColor\"\n                strokeWidth=\"2\"\n            />\n        </svg>\n    )\n}"
+    }
+  ]
+}

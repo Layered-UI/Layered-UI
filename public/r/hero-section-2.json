@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-section-2",
+  "type": "registry:block",
+  "title": "Hero Section 2",
+  "description": "Modern hero section for Layered Blocks",
+  "registryDependencies": [
+    "button",
+    "badge"
+  ],
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "app/preview/hero-section/two/page.tsx",
+      "type": "registry:component",
+      "target": "components/hero-section.tsx",
+      "content": "'use client';\n\nimport Link from 'next/link';\nimport { Badge } from '@/components/ui/badge';\nimport { Button } from '@/components/ui/button';\n\nexport default function FullHeroPage() {\n  return (\n    <main>\n      <section className=\"bg-muted/50 dark:bg-background overflow-hidden\">\n        <div className=\"relative mx-auto max-w-5xl px-6 pt-28 lg:pt-24\">\n          <div className=\"relative z-10 mx-auto max-w-2xl text-center\">\n            {/* Badge */}\n            <div className=\"flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8\">\n              <div className=\"flex items-center\">\n                <div className=\"w-12 sm:w-20 h-px bg-gradient-to-l from-primary/30 to-transparent\" />\n              </div>\n\n              <Badge variant=\"hero\" className=\"group\">\n                <span className=\"text-sm font-normal\">Join us</span>\n              </Badge>\n\n              <div className=\"flex items-center\">\n                <div className=\"w-12 sm:w-20 h-px bg-gradient-to-r from-primary/30 to-transparent\" />\n              </div>\n            </div>\n\n            {/* Heading */}\n            <h1 className=\"text-balance text-4xl font-semibold md:text-5xl lg:text-6xl\">\n              Modern Software testing reimagined\n            </h1>\n\n            {/* Description */}\n            <p className=\"text-muted-foreground mx-auto my-8 max-w-2xl text-xl\">\n              Streamline your testing process with our all-in-one platform, designed to boost\n              efficiency and collaboration across teams.\n            </p>\n\n            {/* CTA Button */}\n            <Button asChild size=\"lg\" className=\"rounded-full\">\n              <Link href=\"#\">\n                <span>Get Started</span>\n              </Link>\n            </Button>\n          </div>\n        </div>\n\n        {/* Dashboard Image */}\n        <div className=\"mx-auto 2xl:max-w-7xl\">\n          <div className=\"perspective-distant pl-8 lg:pl-44\">\n            <div className=\"lg:h-176 rotate-x-20 mask-b-from-55% mask-b-to-100% mask-r-from-75% skew-x-12 pl-6 pt-6\">\n              <img\n                className=\"rounded-lg border shadow-xl\"\n                src=\"https://opencal-nextjs.vercel.app/12.png\"\n                alt=\"Dashboard preview\"\n              />\n            </div>\n          </div>\n        </div>\n      </section>\n    </main>\n  );\n}"
+    },
+    {
+      "path": "components/ui/badge.tsx",
+      "type": "registry:component",
+      "target": "components/ui/badge.tsx",
+      "content": "import type * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90\",\n        destructive:\n          \"border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60\",\n        outline: \"text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n        hero: \"border-border/50 bg-secondary/50 text-foreground backdrop-blur-sm px-4 py-2 rounded-full\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction Badge({\n  className,\n  variant,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"span\"\n\n  return <Comp data-slot=\"badge\" className={cn(badgeVariants({ variant }), className)} {...props} />\n}\n\nexport { Badge, badgeVariants }"
+    }
+  ]
+}
