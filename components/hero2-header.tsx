@@ -105,9 +105,6 @@ function AnimatedText({ text }: { text: string }) {
   return (
     <motion.span
       className="inline-block"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
       variants={textEffectVariants}
     >
       {words.map((word, wordIndex) => (
@@ -149,7 +146,7 @@ export function Hero2(): ReactNode {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative mx-4 max-w-7xl border-x px-4 py-16 overflow-hidden rounded-3xl bg-white transition-colors duration-500 [--color-border:color-mix(in_oklab,var(--color-zinc-200)_75%,transparent)] md:mx-auto dark:bg-[#0a0a0a] dark:[--color-border:color-mix(in_oklab,var(--color-zinc-800)_60%,transparent)]"
+      className="relative mx-4 max-w-7xl border-x px-4 py-16 overflow-hidden rounded-3xl bg-white transition-colors duration-500 [--color-border:color-mix(in_oklab,var(--color-zinc-200)_75%,transparent)] md:mx-auto dark:bg-zinc-950 dark:border-zinc-800"
     >
       {/* Vertical Lines Pattern */}
       <div
@@ -247,9 +244,6 @@ export function Hero2(): ReactNode {
               {/* Badge - Animated Group */}
               <motion.div
                 className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 variants={animatedGroupVariants}
               >
                 <motion.div className="flex items-center" variants={groupItemVariants}>
@@ -270,9 +264,6 @@ export function Hero2(): ReactNode {
               {/* Main Heading - Text Effect Animation */}
               <motion.div 
                 className="flex flex-col gap-4 items-center"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 variants={{
                   visible: {
                     transition: {
@@ -333,9 +324,6 @@ export function Hero2(): ReactNode {
               {/* Description */}
               <motion.p 
                 className="text-gray-600 dark:text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 variants={descriptionVariants}
               >
                 Free and open-source component blocks and layouts built with{' '}
@@ -351,9 +339,6 @@ export function Hero2(): ReactNode {
               {/* CTA Buttons - Animated Group */}
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4 justify-center"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 variants={buttonGroupVariants}
               >
                 <motion.a
