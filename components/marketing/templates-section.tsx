@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -123,10 +125,12 @@ const TemplateCard = ({
         className,
       )}
     >
-      <img
+      <Image
         src={imageUrl}
         alt={title}
-        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        fill
+        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        unoptimized
       />
 
       {/* Tag pill */}
@@ -266,10 +270,10 @@ export const TemplatesSection = () => {
         transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
       >
         <Button variant="ghost" size="sm" className="text-sm" asChild>
-          <a href="/templates">
+          <Link href="/templates">
             See all templates
             <span className="border-l-foreground/50 ml-0.5 block size-0 border-y-4 border-l-4 border-y-transparent" />
-          </a>
+          </Link>
         </Button>
       </motion.div>
     </section>

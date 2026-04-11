@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
 import { ProgressiveBlur } from './motion-primitives/progressive-blur'
 
@@ -15,77 +16,85 @@ export const LogoCloud = () => {
                             speed={40}
                             gap={112}>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-5 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/nvidia.svg"
                                     alt="Nvidia Logo"
-                                    height="20"
-                                    width="auto"
+                                    height={20}
+                                    width={100}
+                                    unoptimized
                                 />
                             </div>
 
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-4 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/column.svg"
                                     alt="Column Logo"
-                                    height="16"
-                                    width="auto"
+                                    height={16}
+                                    width={80}
+                                    unoptimized
                                 />
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-4 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/github.svg"
                                     alt="GitHub Logo"
-                                    height="16"
-                                    width="auto"
+                                    height={16}
+                                    width={80}
+                                    unoptimized
                                 />
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-5 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/nike.svg"
                                     alt="Nike Logo"
-                                    height="20"
-                                    width="auto"
+                                    height={20}
+                                    width={60}
+                                    unoptimized
                                 />
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-5 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
                                     alt="Lemon Squeezy Logo"
-                                    height="20"
-                                    width="auto"
+                                    height={20}
+                                    width={120}
+                                    unoptimized
                                 />
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-4 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/laravel.svg"
                                     alt="Laravel Logo"
-                                    height="16"
-                                    width="auto"
+                                    height={16}
+                                    width={80}
+                                    unoptimized
                                 />
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-7 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-7 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/lilly.svg"
                                     alt="Lilly Logo"
-                                    height="28"
-                                    width="auto"
+                                    height={28}
+                                    width={80}
+                                    unoptimized
                                 />
                             </div>
 
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-6 w-fit dark:invert"
+                                <Image
+                                    className="mx-auto h-6 w-auto dark:invert"
                                     src="https://html.tailus.io/blocks/customers/openai.svg"
                                     alt="OpenAI Logo"
-                                    height="24"
-                                    width="auto"
+                                    height={24}
+                                    width={80}
+                                    unoptimized
                                 />
                             </div>
                         </InfiniteSlider>

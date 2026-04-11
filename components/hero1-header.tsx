@@ -135,7 +135,8 @@ export function Hero2(): ReactNode {
     const { resolvedTheme } = useTheme()
 
     useEffect(() => {
-        setMounted(true)
+        const timer = setTimeout(() => setMounted(true), 0)
+        return () => clearTimeout(timer)
     }, [])
 
     const isDark = mounted && resolvedTheme === 'dark'
