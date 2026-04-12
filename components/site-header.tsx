@@ -65,7 +65,7 @@ export const SiteHeader = () => {
                         variant="link"
                         className="text-foreground decoration-primary gap-1">
                         <Link
-                            href="https://github.com/KingTroy125/layered-blocks"
+                            href="https://github.com/Layered-ui/layered-ui"
                             target="_blank"
                             className="text-sm">
                             GitHub
