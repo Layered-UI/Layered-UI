@@ -13,9 +13,9 @@ export const SiteFooter = () => (
             <div className="mt-2 flex flex-wrap gap-1 overflow-hidden text-sm font-medium text-gray-700 dark:text-gray-300">
                 Designed by
                 <div className="flex items-start justify-center gap-2 text-center font-semibold text-gray-950 sm:gap-1 dark:text-white">
-                    <Link 
-                        href="https://tristanhendricks.vercel.app" 
-                        target="_blank" 
+                    <Link
+                        href="https://tristanhendricks.vercel.app"
+                        target="_blank"
                         className="hover:text-primary transition-colors duration-200 hover:underline"
                     >
                         <div className="block">
@@ -37,7 +37,7 @@ export const SiteFooter = () => (
             </div>
             <div className="flex">
                 <Button asChild variant="link" className="text-foreground decoration-primary -ml-4 gap-1">
-                    <Link href="https://github.com/KingTroy125/layered-blocks" target="_blank" className="text-sm">
+                    <Link href="https://github.com/layered-ui/layered-ui" target="_blank" className="text-sm">
                         GitHub
                         <ArrowUpRight className="!size-3.5 opacity-50" />
                     </Link>
