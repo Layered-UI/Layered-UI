@@ -296,13 +296,6 @@ export const blocks: Block[] = [
         preview: '/preview/cta/two',
         get code() { return loadCode('app/preview/cta/two/page.tsx') },
     },
-    {
-        slug: 'cta',
-        title: 'five',
-        category: 'cta',
-        preview: '/preview/cta/five',
-        get code() { return loadCode('app/preview/cta/five/page.tsx') },
-    },
 
     {
         slug: 'login',
