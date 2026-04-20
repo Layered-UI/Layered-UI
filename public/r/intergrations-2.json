@@ -3,7 +3,7 @@
     "name": "integrations-2",
     "type": "registry:block",
     "title": "Integrations Block 2",
-    "description": "Shadcn/ui website integrations block for Layered Blocks",
+    "description": "Shadcn/ui website integrations block for Layered UI",
     "registryDependencies": [
         "button",
         "badge"
