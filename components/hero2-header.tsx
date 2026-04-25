@@ -350,7 +350,7 @@ export function Hero2(): ReactNode {
                   <ChevronRight className="w-4 h-4" />
                 </motion.a>
                 <motion.a
-                  href="#"
+                  href="/templates"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
                   variants={buttonItemVariants}
                 >
