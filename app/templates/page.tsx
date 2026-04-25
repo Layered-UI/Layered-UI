@@ -45,7 +45,7 @@ const scaleInVariants: Variants = {
   },
 };
 
-// Data //
+// Data
 interface TemplateItem {
   title: string;
   description: string;
@@ -242,7 +242,6 @@ export default function TemplatesPage() {
                       asChild
                     >
                       <a href={template.livePreviewUrl} target="_blank" rel="noopener noreferrer">
-                        <Eye className="w-4 h-4 mr-2" />
                         Preview Template
                       </a>
                     </Button>
