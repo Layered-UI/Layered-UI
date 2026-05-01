@@ -45,5 +45,10 @@ export const SiteFooter = () => (
                 <ThemeToggle />
             </div>
         </div>
+        <Button asChild variant="link" className="text-foreground decoration-primary -ml-4 gap-1">
+            <Link href="/changelog" className="text-sm">
+                Changelog
+            </Link>
+        </Button>
     </footer>
 )
