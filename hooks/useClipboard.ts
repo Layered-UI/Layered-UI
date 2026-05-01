@@ -16,15 +16,40 @@ export const useCopyToClipboard = (block:BlockProps) => {
 
     const [copied, setCopied] = useState(false);
 
-    const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(code);
-        setCopied(true);
+    const copy = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        if (e && e.preventDefault) e.preventDefault();
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+                await navigator.clipboard.writeText(code);
+                setCopied(true);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        } else {
+            // Fallback for non-secure contexts (HTTP)
+            const textArea = document.createElement("textarea");
+            textArea.value = code;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                setCopied(true);
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+            document.body.removeChild(textArea);
+        }
 
         sendGAEvent('event', eventName, {
             block_title: title,
             block_category: category,
         })
+
         setTimeout(() => {
             setCopied(false);
         }, 1500);
