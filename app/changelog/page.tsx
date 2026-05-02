@@ -16,7 +16,7 @@ const changelogData = [
             },
             {
                 type: 'Improved',
-                description: 'Optimized block loading performance with better intersection observer margins and a 5-second forced loading fallback.',
+                description: 'Optimized block loading performance with better intersection observer margins and a 1.5-second forced loading fallback.',
                 icon: <ArrowUpCircle className="size-4 text-green-500" />,
             },
             {

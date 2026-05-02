@@ -9,6 +9,8 @@ import { Fragment, jsx, jsxs } from 'react/jsx-runtime'
 import type { BundledLanguage } from 'shiki/bundle/web'
 import { codeToHast } from 'shiki/bundle/web'
 
+import { RoseTwoLoader } from './rose-two-loader'
+
 export async function highlight(code: string, lang: BundledLanguage) {
     const hast = await codeToHast(code, {
         lang,
@@ -61,6 +63,8 @@ export default function CodeBlock({ code, lang, initial, maxHeight, preHighlight
             {content}
         </div>
     ) : (
-        <pre className="rounded-lg bg-zinc-950 p-4">Loading...</pre>
+        <div className="flex h-[32rem] items-center justify-center rounded-lg bg-zinc-950 p-4">
+            <RoseTwoLoader size={60} className="text-white/20" />
+        </div>
     )
 }

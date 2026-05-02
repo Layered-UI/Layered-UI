@@ -15,6 +15,7 @@ import { isUrlCached } from '@/lib/serviceWorker'
 import { motion, AnimatePresence } from 'motion/react'
 import { HeartIcon, type HeartIconHandle } from '@/components/animation-logos/HeartIcon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { RoseTwoLoader } from './rose-two-loader'
 
 // --- Types & Context ---
 
@@ -87,7 +88,6 @@ export const BlockPreviewProvider: React.FC<{
     const [iframeLoaded, setIframeLoaded] = useState(false)
     const [loved, setLoved] = useState(false)
     const [reloadKey, setReloadKey] = useState(0)
-
     const reload = () => {
         setIframeLoaded(false)
         setReloadKey((prev) => prev + 1)
@@ -211,7 +211,7 @@ export const BlockPreviewProvider: React.FC<{
         // Safety net: show the iframe after a delay even if events fail
         const fallbackTimer = setTimeout(() => {
             setIframeLoaded(true)
-        }, 5000) // Ensure it shows by 5 seconds at the latest if load event fails
+        }, 5000) // 5s safety net
 
         return () => {
             iframe.removeEventListener('load', handleLoad)
@@ -475,10 +475,13 @@ function BlockPreviewView() {
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-950 z-20 gap-3"
+                                    className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-950 z-20 gap-6"
                                 >
-                                    <RefreshCw className="size-6 animate-spin text-muted-foreground" />
-                                    <span className="text-xs font-medium text-muted-foreground animate-pulse">Loading Preview...</span>
+                                    <RoseTwoLoader size={80} className="text-primary/40" />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <span className="text-xs font-medium text-muted-foreground animate-pulse">Loading Preview...</span>
+                                        <span className="text-[10px] text-muted-foreground/40 font-mono tracking-tighter">ROSE_TWO</span>
+                                    </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -512,7 +515,7 @@ function BlockPreviewView() {
                             />
                         ) : (
                             <div className="flex min-h-56 items-center justify-center">
-                                <RefreshCw className="size-5 animate-spin text-muted-foreground/50" />
+                                <RoseTwoLoader size={40} className="text-primary/20" />
                             </div>
                         )}
                     </div>
