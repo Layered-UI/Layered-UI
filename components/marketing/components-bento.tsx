@@ -80,7 +80,7 @@ function getLayout(count: number): string[] {
   }
 }
 
-// Variants //
+// Variants
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
