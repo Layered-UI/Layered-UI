@@ -165,7 +165,7 @@ const ComponentPreviewCard = ({
   );
 };
 
-// ComponentsBentoSection //
+// ComponentsBentoSection
 
 export const ComponentsBentoSection = () => {
   const layout = getLayout(previewComponents.length);
