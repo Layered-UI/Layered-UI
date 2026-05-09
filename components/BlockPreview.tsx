@@ -246,7 +246,7 @@ export const BlockPreviewProvider: React.FC<{
     )
 }
 
-// --- Sub-components ---
+// Sub-components
 
 function BlockPreviewToolbar() {
     const { mode, setMode, title, width, resizablePanelRef, handleLove, loved, heartIconRef, cliCopy, cliCopied, preview, category, reload, iframeLoaded } = useBlockPreview()
