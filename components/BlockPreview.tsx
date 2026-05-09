@@ -9,7 +9,6 @@ import { useMedia } from 'use-media'
 import { Button } from './ui/button'
 import { cn, titleToNumber } from '@/lib/utils'
 import CodeBlock from './code-block'
-import Link from 'next/link'
 import { OpenInV0Button } from './open-in-v0'
 import { isUrlCached } from '@/lib/serviceWorker'
 import { motion, AnimatePresence } from 'motion/react'
@@ -17,7 +16,7 @@ import { HeartIcon, type HeartIconHandle } from '@/components/animation-logos/He
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { RoseTwoLoader } from './rose-two-loader'
 
-// --- Types & Context ---
+// Types & Context 
 
 type ViewMode = 'preview' | 'code'
 
