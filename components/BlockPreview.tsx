@@ -61,7 +61,7 @@ function useBlockPreview() {
     return context
 }
 
-// --- Provider ---
+// Provider
 
 const DEFAULT_SIZE = 100
 const SM_SIZE = 30
