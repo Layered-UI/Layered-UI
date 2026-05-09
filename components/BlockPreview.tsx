@@ -587,7 +587,7 @@ function BlockPreviewCode() {
     )
 }
 
-// --- Main Component ---
+// Main Component
 
 export interface BlockPreviewProps {
     code?: string
