@@ -126,7 +126,7 @@ const cardVariants: Variants = {
   },
 };
 
-// ComponentPreviewCard //
+// ComponentPreviewCard
 
 const ComponentPreviewCard = ({
   title,
