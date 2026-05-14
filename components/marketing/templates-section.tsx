@@ -53,7 +53,7 @@ function getLayout(count: number): string[] {
   }
 }
 
-// Variants //
+// Variants
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -99,7 +99,7 @@ const cardVariants: Variants = {
   },
 };
 
-// TemplateCard //
+// TemplateCard
 
 const TemplateCard = ({
   title,
@@ -166,7 +166,7 @@ const TemplateCard = ({
   );
 };
 
-// TemplatesSection //
+// TemplatesSection
 
 export const TemplatesSection = () => {
   const layout = getLayout(templates.length);

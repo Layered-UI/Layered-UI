@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "Layered Blocks",
-  "homepage": "https://layered-blocks.vercel.app",
+  "homepage": "https://layered-ui.vercel.app",
   "items": [
     {
       "name": "call-to-action-1",
       "type": "registry:block",
       "title": "Call To Action 1",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -24,7 +24,7 @@
       "type": "registry:block",
       "title": "Call To Action 2",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -40,7 +40,7 @@
       "type": "registry:block",
       "title": "Call To Action 3",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -51,13 +51,12 @@
         }
       ]
     },
-
     {
       "name": "comparator-1",
       "type": "registry:block",
       "title": "Pricing Comparator 1",
       "description": "Shadcn/ui pricing comparator table block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -68,7 +67,6 @@
         }
       ]
     },
-
     {
       "name": "content-1",
       "type": "registry:block",
@@ -113,7 +111,7 @@
       "type": "registry:block",
       "title": "Content Block 4",
       "description": "Shadcn/ui website content block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -163,7 +161,6 @@
         }
       ]
     },
-
     {
       "name": "faqs-1",
       "type": "registry:block",
@@ -177,13 +174,12 @@
         }
       ]
     },
-
     {
       "name": "features-1",
       "type": "registry:block",
       "title": "Features Block 1",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -199,7 +195,7 @@
       "type": "registry:block",
       "title": "Features Block 2",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -215,7 +211,7 @@
       "type": "registry:block",
       "title": "Features Block 3",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -283,7 +279,7 @@
       "type": "registry:block",
       "title": "Features Block 8",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -299,7 +295,7 @@
       "type": "registry:block",
       "title": "Features Block 9",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card",
         "chart"
       ],
@@ -323,7 +319,7 @@
       "type": "registry:block",
       "title": "Features Block 10",
       "description": "Shadcn/ui website features block with cards and circular UI elements",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -339,7 +335,7 @@
       "type": "registry:block",
       "title": "Features Block 11",
       "description": "Shadcn/ui website features block with grid layout and images",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -355,7 +351,7 @@
       "type": "registry:block",
       "title": "Features Block 12",
       "description": "Shadcn/ui website features block with accordion and animated images",
-      "registryDependencies" : [
+      "registryDependencies": [
         "accordion",
         "https://magicui.design/r/border-beam"
       ],
@@ -747,7 +743,8 @@
           "type": "registry:component"
         }
       ]
-    },{
+    },
+    {
       "name": "sign-up-1",
       "type": "registry:block",
       "title": "Sign Up Page 1",
