@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/'], 
+      disallow: ['/api/'],
     },
-    sitemap: 'https://layered-blocks.vercel.app/sitemap.xml',
+    sitemap: 'https://layeredui.vercel.app/sitemap.xml',
   }
 }
