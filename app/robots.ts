@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://layeredui.vercel.app/sitemap.xml',
+    sitemap: 'https://layered-ui.vercel.app/sitemap.xml',
   }
 }
