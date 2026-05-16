@@ -99,7 +99,7 @@ const ctaVariant = {
   },
 };
 
-// ─── Reduced-motion variants ──────────────────────────────────────────────────
+// Reduced-motion variants
 // prefers-reduced-motion: remove all movement and blur, keep opacity
 // transitions (they aid comprehension without causing motion sickness).
 // Reduced motion ≠ no animation — just gentler.
@@ -113,7 +113,7 @@ const fadeOnly = {
   }),
 };
 
-// ─── IntegrationCard ──────────────────────────────────────────────────────────
+// IntegrationCard
 
 const IntegrationCard = ({
   children,
