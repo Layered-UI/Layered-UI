@@ -179,7 +179,7 @@ const IntegrationCard = ({
   );
 };
 
-// ─── IntegrationsSection ──────────────────────────────────────────────────────
+// IntegrationsSection
 
 export default function IntegrationsSection() {
   const headerRef = useRef(null);
@@ -204,7 +204,7 @@ export default function IntegrationsSection() {
       <div className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          {/* ── Header ─────────────────────────────────────────────────────── */}
+          {/* Header */}
           <div
             ref={headerRef}
             className="mb-16 flex flex-col items-center text-center gap-6 sm:gap-8"
