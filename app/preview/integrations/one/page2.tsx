@@ -14,13 +14,13 @@ import { Badge } from '@/components/ui/badge';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 
-// ─── Easing ───────────────────────────────────────────────────────────────────
+// Easing
 // Strong expo ease-out: starts fast, gives immediate visual feedback.
 // Built-in easings lack the punch that makes animations feel intentional.
 // Rule: all entering/exiting elements → ease-out. Never ease-in.
 const expo = [0.16, 1, 0.3, 1] as const;
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
+// Variants
 
 const lineVariant = {
   hidden: { scaleX: 0, opacity: 0 },
@@ -183,21 +183,21 @@ const IntegrationCard = ({
 
 export default function IntegrationsSection() {
   const headerRef = useRef(null);
-  const gridRef   = useRef(null);
-  const ctaRef    = useRef(null);
+  const gridRef = useRef(null);
+  const ctaRef = useRef(null);
 
   const headerInView = useInView(headerRef, { once: true, margin: '-60px' });
-  const gridInView   = useInView(gridRef,   { once: true, margin: '-40px' });
-  const ctaInView    = useInView(ctaRef,    { once: true, margin: '-30px' });
+  const gridInView = useInView(gridRef, { once: true, margin: '-40px' });
+  const ctaInView = useInView(ctaRef, { once: true, margin: '-30px' });
 
   const shouldReduceMotion = useReducedMotion();
 
   // Swap every variant to the reduced version when the user has requested
   // reduced motion at the OS level.
-  const line  = shouldReduceMotion ? fadeOnly : lineVariant;
+  const line = shouldReduceMotion ? fadeOnly : lineVariant;
   const badge = shouldReduceMotion ? fadeOnly : badgeVariant;
-  const text  = shouldReduceMotion ? fadeOnly : fadeUp;
-  const cta   = shouldReduceMotion ? fadeOnly : ctaVariant;
+  const text = shouldReduceMotion ? fadeOnly : fadeUp;
+  const cta = shouldReduceMotion ? fadeOnly : ctaVariant;
 
   return (
     <section>
