@@ -264,7 +264,7 @@ export default function IntegrationsSection() {
             </motion.p>
           </div>
 
-          {/* ── Integration Cards Grid ─────────────────────────────────────── */}
+          {/* Integration Cards Grid */}
           <div className="relative mx-auto w-fit mb-12">
             <div
               role="presentation"
@@ -307,7 +307,7 @@ export default function IntegrationsSection() {
             </motion.div>
           </div>
 
-          {/* ── CTA ────────────────────────────────────────────────────────── */}
+          {/* CTA */}
           <motion.div
             ref={ctaRef}
             className="flex justify-center"
