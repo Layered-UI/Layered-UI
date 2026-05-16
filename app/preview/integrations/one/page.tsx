@@ -83,7 +83,7 @@ const ctaVariant = {
   },
 }
 
-// ─── IntegrationCard ──────────────────────────────────────────────────────────
+// IntegrationCard
 
 const IntegrationCard = ({
   children,
@@ -120,7 +120,7 @@ const IntegrationCard = ({
   );
 };
 
-// ─── IntegrationsSection ──────────────────────────────────────────────────────
+// IntegrationsSection
 
 export default function IntegrationsSection() {
   const headerRef = useRef(null)
