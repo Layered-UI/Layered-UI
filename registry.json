@@ -1011,6 +1011,9 @@
       "registryDependencies": [
         "button"
       ],
+      "dependencies": [
+        "framer-motion"
+      ],
       "files": [
         {
           "path": "app/preview/navbar/one/page.tsx",
