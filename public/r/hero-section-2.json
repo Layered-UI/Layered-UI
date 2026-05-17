@@ -5,8 +5,7 @@
   "title": "Hero Section 2",
   "description": "Modern hero section for Layered Blocks",
   "registryDependencies": [
-    "button",
-    "badge"
+    "button"
   ],
   "dependencies": [
     "framer-motion"
