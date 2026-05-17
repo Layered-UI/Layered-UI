@@ -178,7 +178,7 @@
       "name": "features-1",
       "type": "registry:block",
       "title": "Features Block 1",
-      "description": "Shadcn/ui website features block",
+      "description": "Layered UI website features block",
       "registryDependencies": [
         "card"
       ],
@@ -187,6 +187,11 @@
           "path": "app/preview/features/one/page.tsx",
           "type": "registry:component",
           "target": "components/features-1.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
