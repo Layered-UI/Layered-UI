@@ -1004,6 +1004,19 @@
       ]
     },
     {
+      "name": "navbar-1",
+      "type": "registry:block",
+      "title": "Navbar Block 1",
+      "description": "Layered UI website navbar block",
+      "files": [
+        {
+          "path": "app/preview/navbar/one/page.tsx",
+          "type": "registry:component",
+          "target": "components/navbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "logo-cloud-1",
       "type": "registry:block",
       "title": "Logo Cloud 1",
