@@ -1008,11 +1008,19 @@
       "type": "registry:block",
       "title": "Navbar Block 1",
       "description": "Layered UI website navbar block",
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "app/preview/navbar/one/page.tsx",
           "type": "registry:component",
           "target": "components/navbar.tsx"
+        },
+        {
+          "path": "components/logo.tsx",
+          "type": "registry:component",
+          "target": "components/logo.tsx"
         }
       ]
     },
