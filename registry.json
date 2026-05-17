@@ -208,6 +208,11 @@
           "path": "app/preview/features/two/page.tsx",
           "type": "registry:component",
           "target": "components/features-2.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
