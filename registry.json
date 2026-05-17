@@ -236,12 +236,20 @@
       "name": "features-4",
       "type": "registry:block",
       "title": "Features Block 4",
-      "description": "Shadcn/ui website features block",
+      "description": "Layered UI website features block",
+      "registryDependencies": [
+        "card"
+      ],
       "files": [
         {
           "path": "app/preview/features/four/page.tsx",
           "type": "registry:component",
           "target": "components/features-4.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
