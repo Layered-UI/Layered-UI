@@ -21,6 +21,6 @@
   "registries": {
     "@magicui": "https://magicui.design/r/{name}",
     "@eldoraui": "https://eldoraui.site/r/{name}.json",
-    "@layeredui": "https://layered-blocks.vercel.app/r/{name}.json"
+    "@layeredui": "https://layeredui.com/r/{name}.json"
   }
 }
