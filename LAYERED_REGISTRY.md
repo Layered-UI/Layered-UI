@@ -9,7 +9,7 @@ Add the Layered registry namespace to your `components.json`.
 ```json
 {
 	"registries": {
-	  "@layeredui": "https://layered-blocks.vercel.app/r/{name}.json"
+	  "@layeredui": "https://layered-ui.vercel.app/r/{name}.json"
 	}
 }
 ```
