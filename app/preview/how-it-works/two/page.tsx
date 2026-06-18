@@ -80,7 +80,7 @@ const fadeOnlyGroup = {
     visible: { transition: { staggerChildren: 0.05 } },
 }
 
-// ─── Step data ────────────────────────────────────────────────────────────────
+// Step data
 
 const steps = [
     {
