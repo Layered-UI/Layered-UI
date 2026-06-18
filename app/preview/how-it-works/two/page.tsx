@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 // Strong expo ease-out — starts fast, feels immediately responsive.
 const expo = [0.16, 1, 0.3, 1] as const
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
+// Variants
 
 // Badge row lines: scaleX reveal from origin point.
 const lineVariant = {
