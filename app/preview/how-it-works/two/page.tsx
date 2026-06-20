@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { Logo } from "@/components/logo"
 import { Badge } from "@/components/ui/badge"
 
-// ─── Easing ───────────────────────────────────────────────────────────────────
+// Easing
 // Strong expo ease-out — starts fast, feels immediately responsive.
 const expo = [0.16, 1, 0.3, 1] as const
 
