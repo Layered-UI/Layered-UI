@@ -42,12 +42,12 @@ All components are:
 
 ## ✦ Features
 
-- 🏗️ **shadcn/ui Integration**: Native support for the industry-standard UI library.
-- 🎨 **Tailwind CSS 4**: Leverages the latest styling engine for performance.
-- 📱 **Fully Responsive**: Crafted for desktop, tablet, and mobile out of the box.
-- 🧩 **Registry Powered**: No more copy-pasting; just run a command.
-- ⚡ **Modern Stack**: Powered by React 19, Next.js 16, and Motion (Framer Motion).
-- 🤖 **MCP Support**: AI-ready components for your coding assistants.
+- **shadcn/ui Integration**: Native support for the industry-standard UI library.
+- **Tailwind CSS 4**: Leverages the latest styling engine for performance.
+- **Fully Responsive**: Crafted for desktop, tablet, and mobile out of the box.
+- **Registry Powered**: No more copy-pasting; just run a command.
+- **Modern Stack**: Powered by React 19, Next.js 16, and Motion (Framer Motion).
+- **MCP Support**: AI-ready components for your coding assistants.
 
 ---
 
@@ -61,6 +61,12 @@ All components are:
 | **Components** | [shadcn/ui](https://ui.shadcn.com/) |
 | **Icons** | [Lucide React](https://lucide.dev/) |
 | **Animations** | [Motion](https://motion.dev/) |
+
+---
+
+## Architecture
+
+For a senior-engineer-level view of the full system, including routing, registry generation, block preview flow, ownership boundaries, and operational risks, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ---
 
@@ -137,6 +143,12 @@ npx shadcn mcp init
 ## ✦ License
 
 Distributed under the MIT License. See [LICENSE.md](./LICENCE.md) for details.
+
+---
+
+## Credits
+
+Built by KingTroy125 and contributors on top of the Next.js, React, Tailwind CSS, shadcn/ui, Radix UI, Lucide, Motion, Shiki, and Vercel ecosystems. See [ARCHITECTURE.md](./ARCHITECTURE.md#credits) for architecture-level attribution notes.
 
 ---
 
