@@ -5,8 +5,7 @@
   "title": "Navbar 1",
   "description": "Modern navbar for Layered Blocks",
   "registryDependencies": [
-    "button",
-    "logo"
+    "button"
   ],
   "dependencies": [
     "framer-motion"

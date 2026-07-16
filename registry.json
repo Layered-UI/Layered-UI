@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "Layered Blocks",
-  "homepage": "https://layered-blocks.vercel.app",
+  "homepage": "https://layered-ui.vercel.app",
   "items": [
     {
       "name": "call-to-action-1",
       "type": "registry:block",
       "title": "Call To Action 1",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -24,7 +24,7 @@
       "type": "registry:block",
       "title": "Call To Action 2",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -40,7 +40,7 @@
       "type": "registry:block",
       "title": "Call To Action 3",
       "description": "Shadcn/ui call to action block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -51,13 +51,12 @@
         }
       ]
     },
-
     {
       "name": "comparator-1",
       "type": "registry:block",
       "title": "Pricing Comparator 1",
       "description": "Shadcn/ui pricing comparator table block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -68,7 +67,6 @@
         }
       ]
     },
-
     {
       "name": "content-1",
       "type": "registry:block",
@@ -113,7 +111,7 @@
       "type": "registry:block",
       "title": "Content Block 4",
       "description": "Shadcn/ui website content block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "button"
       ],
       "files": [
@@ -163,7 +161,6 @@
         }
       ]
     },
-
     {
       "name": "faqs-1",
       "type": "registry:block",
@@ -177,13 +174,12 @@
         }
       ]
     },
-
     {
       "name": "features-1",
       "type": "registry:block",
       "title": "Features Block 1",
-      "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "description": "Layered UI website features block",
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -191,6 +187,11 @@
           "path": "app/preview/features/one/page.tsx",
           "type": "registry:component",
           "target": "components/features-1.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
@@ -199,7 +200,7 @@
       "type": "registry:block",
       "title": "Features Block 2",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -207,6 +208,11 @@
           "path": "app/preview/features/two/page.tsx",
           "type": "registry:component",
           "target": "components/features-2.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
@@ -215,7 +221,7 @@
       "type": "registry:block",
       "title": "Features Block 3",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -230,12 +236,20 @@
       "name": "features-4",
       "type": "registry:block",
       "title": "Features Block 4",
-      "description": "Shadcn/ui website features block",
+      "description": "Layered UI website features block",
+      "registryDependencies": [
+        "card"
+      ],
       "files": [
         {
           "path": "app/preview/features/four/page.tsx",
           "type": "registry:component",
           "target": "components/features-4.tsx"
+        },
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx"
         }
       ]
     },
@@ -283,7 +297,7 @@
       "type": "registry:block",
       "title": "Features Block 8",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -299,7 +313,7 @@
       "type": "registry:block",
       "title": "Features Block 9",
       "description": "Shadcn/ui website features block",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card",
         "chart"
       ],
@@ -323,7 +337,7 @@
       "type": "registry:block",
       "title": "Features Block 10",
       "description": "Shadcn/ui website features block with cards and circular UI elements",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -339,7 +353,7 @@
       "type": "registry:block",
       "title": "Features Block 11",
       "description": "Shadcn/ui website features block with grid layout and images",
-      "registryDependencies" : [
+      "registryDependencies": [
         "card"
       ],
       "files": [
@@ -355,7 +369,7 @@
       "type": "registry:block",
       "title": "Features Block 12",
       "description": "Shadcn/ui website features block with accordion and animated images",
-      "registryDependencies" : [
+      "registryDependencies": [
         "accordion",
         "https://magicui.design/r/border-beam"
       ],
@@ -368,6 +382,33 @@
           "type": "registry:component",
           "target": "components/features-12.tsx"
         }
+      ]
+    },
+    {
+      "name":  "how-it-works-1",
+      "type":  "registry:block",
+      "title":  "How It Works 1",
+      "description":  "Modern how-it-works section for Layered Blocks",
+      "dependencies":  [
+      "framer-motion"
+      ],
+      "registryDependencies":  [
+          "badge"
+      ],
+      "files":  [
+          {
+          "path":  "app/preview/how-it-works/one/page.tsx",
+          "type":  "registry:component",
+          "content":  "\"use client\"\n\nimport { motion, useReducedMotion } from \"framer-motion\"\nimport { Logo } from \"@/components/logo\"\nimport { Badge } from \"@/components/ui/badge\"\nimport Image from \"next/image\"\n\n// ─── Easing ───────────────────────────────────────────────────────────────────\n// Strong expo ease-out — starts fast, feels immediately responsive.\nconst expo = [0.16, 1, 0.3, 1] as const\n\n// ─── Variants ─────────────────────────────────────────────────────────────────\n\n// Badge row lines: scaleX reveal from origin point.\nconst lineVariant = {\n    hidden: { scaleX: 0, opacity: 0 },\n    visible: {\n        scaleX: 1,\n        opacity: 1,\n        transition: { duration: 0.7, ease: expo, delay: 0.1 },\n    },\n}\n\n// Badge pill: translateY + opacity only.\nconst badgeVariant = {\n    hidden: { opacity: 0, y: 8 },\n    visible: {\n        opacity: 1,\n        y: 0,\n        transition: { duration: 0.6, ease: expo },\n    },\n}\n\n// Heading: translateY + opacity.\nconst headingVariant = {\n    hidden: { opacity: 0, y: 20 },\n    visible: {\n        opacity: 1,\n        y: 0,\n        transition: { duration: 0.8, ease: expo, delay: 0.15 },\n    },\n}\n\n// Description: cascades just after heading.\nconst descVariant = {\n    hidden: { opacity: 0, y: 16 },\n    visible: {\n        opacity: 1,\n        y: 0,\n        transition: { duration: 0.75, ease: expo, delay: 0.25 },\n    },\n}\n\n// Step cards group: stagger cascade.\nconst stepsGroupVariant = {\n    hidden: {},\n    visible: {\n        transition: { staggerChildren: 0.07, delayChildren: 0.1 },\n    },\n}\n\n// Card entrance: scale(0.95) + opacity.\nconst stepCardVariant = {\n    hidden: { opacity: 0, scale: 0.95 },\n    visible: {\n        opacity: 1,\n        scale: 1,\n        transition: { duration: 0.5, ease: expo },\n    },\n}\n\n// Right panel: slides up slightly after cards begin.\nconst panelVariant = {\n    hidden: { opacity: 0, y: 24 },\n    visible: {\n        opacity: 1,\n        y: 0,\n        transition: { duration: 0.8, ease: expo, delay: 0.15 },\n    },\n}\n\n// Reduced-motion: opacity only, no movement.\nconst fadeOnly = {\n    hidden: { opacity: 0 },\n    visible: { opacity: 1, transition: { duration: 0.4 } },\n}\n\nconst fadeOnlyGroup = {\n    hidden: {},\n    visible: { transition: { staggerChildren: 0.05 } },\n}\n\n// ─── Step data ────────────────────────────────────────────────────────────────\n\nconst steps = [\n    {\n        title: \"Choose your role\",\n        description: \"Select whether you\u0027re joining as an employee or team manager\",\n    },\n    {\n        title: \"Set up your profile\",\n        description: \"Add your details and preferences so your team knows who you are\",\n    },\n    {\n        title: \"Sync your workspace\",\n        description: \"Connect your tools and get straight into working with your team\",\n    },\n]\n\n// ─── HowItWorksSection ────────────────────────────────────────────────────────\n\nexport default function HowItWorksSection() {\n    const shouldReduceMotion = useReducedMotion()\n\n    const line = shouldReduceMotion ? fadeOnly : lineVariant\n    const badge = shouldReduceMotion ? fadeOnly : badgeVariant\n    const heading = shouldReduceMotion ? fadeOnly : headingVariant\n    const desc = shouldReduceMotion ? fadeOnly : descVariant\n    const stepsGrp = shouldReduceMotion ? fadeOnlyGroup : stepsGroupVariant\n    const stepCard = shouldReduceMotion ? fadeOnly : stepCardVariant\n    const rightPanel = shouldReduceMotion ? fadeOnly : panelVariant\n\n    return (\n        \u003csection className=\"w-full bg-background py-16 sm:py-20 md:py-24 overflow-hidden\"\u003e\n            \u003cdiv className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12 sm:gap-14 md:gap-16\"\u003e\n\n                {/* ── Header ─────────────────────────────────────────────────────── */}\n                \u003cdiv className=\"flex flex-col items-center gap-6 sm:gap-8 w-full text-center\"\u003e\n\n                    {/* Badge row */}\n                    \u003cdiv className=\"flex items-center justify-center gap-2 sm:gap-3\"\u003e\n                        \u003cmotion.div\n                            className=\"flex items-center origin-right\"\n                            variants={line}\n                            initial=\"hidden\"\n                            whileInView=\"visible\"\n                            viewport={{ once: true, margin: \"-40px\" }}\n                        \u003e\n                            \u003cdiv className=\"w-12 sm:w-20 lg:w-32 h-px bg-gradient-to-l from-primary/30 to-transparent\" /\u003e\n                        \u003c/motion.div\u003e\n\n                        \u003cmotion.div\n                            variants={badge}\n                            initial=\"hidden\"\n                            whileInView=\"visible\"\n                            viewport={{ once: true, margin: \"-40px\" }}\n                        \u003e\n                            \u003cBadge variant=\"hero\"\u003e\n                                \u003cspan className=\"text-sm font-normal\"\u003eHow it works\u003c/span\u003e\n                            \u003c/Badge\u003e\n                        \u003c/motion.div\u003e\n\n                        \u003cmotion.div\n                            className=\"flex items-center origin-left\"\n                            variants={line}\n                            initial=\"hidden\"\n                            whileInView=\"visible\"\n                            viewport={{ once: true, margin: \"-40px\" }}\n                        \u003e\n                            \u003cdiv className=\"w-12 sm:w-20 lg:w-32 h-px bg-gradient-to-r from-primary/30 to-transparent\" /\u003e\n                        \u003c/motion.div\u003e\n                    \u003c/div\u003e\n\n                    {/* Heading */}\n                    \u003cmotion.h2\n                        className=\"text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-foreground px-4 text-balance\"\n                        variants={heading}\n                        initial=\"hidden\"\n                        whileInView=\"visible\"\n                        viewport={{ once: true, margin: \"-40px\" }}\n                    \u003e\n                        Start fast, join your team easier\n                    \u003c/motion.h2\u003e\n\n                    {/* Description */}\n                    \u003cmotion.p\n                        className=\"max-w-xl text-sm sm:text-base font-normal leading-relaxed text-muted-foreground px-4\"\n                        variants={desc}\n                        initial=\"hidden\"\n                        whileInView=\"visible\"\n                        viewport={{ once: true, margin: \"-40px\" }}\n                    \u003e\n                        Set up your profile in minutes and sync with your workspace.\n                        \u003cbr className=\"hidden sm:block\" /\u003e\n                        No friction, no confusion — just flow.\n                    \u003c/motion.p\u003e\n                \u003c/div\u003e\n\n                {/* ── Two-column layout ──────────────────────────────────────────── */}\n                \u003cdiv className=\"w-full grid grid-cols-1 lg:grid-cols-2 gap-4 items-start\"\u003e\n\n                    {/* Left — step cards inside a themed container */}\n                    \u003cmotion.div\n                        className=\"w-full p-2 bg-secondary/50 rounded-[28px] border border-border/50 flex flex-col gap-2\"\n                        variants={stepsGrp}\n                        initial=\"hidden\"\n                        whileInView=\"visible\"\n                        viewport={{ once: true, margin: \"-60px\" }}\n                    \u003e\n                        {steps.map((step) =\u003e (\n                            \u003cmotion.div\n                                key={step.title}\n                                variants={stepCard}\n                                style={{ willChange: \"transform, opacity\" }}\n                                className=\"w-full bg-background rounded-[22px] px-8 py-8 border border-border/40 flex flex-col gap-4 shadow-sm\"\n                            \u003e\n                                \u003cdiv className=\"flex size-14 items-center justify-center rounded-2xl bg-secondary/80 border border-border/60\"\u003e\n                                    \u003cLogo className=\"size-8 text-primary\" /\u003e\n                                \u003c/div\u003e\n                                \u003cdiv className=\"space-y-1.5\"\u003e\n                                    \u003ch3 className=\"text-lg font-medium text-foreground leading-snug\"\u003e\n                                        {step.title}\n                                    \u003c/h3\u003e\n                                    \u003cp className=\"text-sm font-normal text-muted-foreground leading-relaxed max-w-[320px]\"\u003e\n                                        {step.description}\n                                    \u003c/p\u003e\n                                \u003c/div\u003e\n                            \u003c/motion.div\u003e\n                        ))}\n                    \u003c/motion.div\u003e\n\n                    {/* Right — Phone Mockup Panel */}\n                    \u003cmotion.div\n                        variants={rightPanel}\n                        initial=\"hidden\"\n                        whileInView=\"visible\"\n                        viewport={{ once: true, margin: \"-60px\" }}\n                        style={{ willChange: \"transform, opacity\" }}\n                        className=\"relative w-full aspect-[4/5] lg:aspect-auto lg:h-full min-h-[400px] bg-secondary/30 border border-border/50 rounded-[28px] lg:self-stretch overflow-hidden group\"\n                    \u003e\n                        \u003cImage\n                            src=\"/assets/phone.png\"\n                            alt=\"Mockup Preview\"\n                            fill\n                            className=\"object-cover transition-transform duration-700 ease-expo group-hover:scale-105\"\n                            priority\n                        /\u003e\n                        {/* Subtle overlay for depth */}\n                        \u003cdiv className=\"absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none\" /\u003e\n                    \u003c/motion.div\u003e\n\n                \u003c/div\u003e\n\n            \u003c/div\u003e\n        \u003c/section\u003e\n    )\n}",
+          "target":  "components/how-it-works-1.tsx"
+          },
+          
+          {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx",
+          "content": "import type * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90\",\n        destructive:\n          \"border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60\",\n        outline: \"text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n        hero: \"border-border/50 bg-secondary/50 text-foreground backdrop-blur-sm px-4 py-2 rounded-full\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction Badge({\n  className,\n  variant,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"span\"\n\n  return <Comp data-slot=\"badge\" className={cn(badgeVariants({ variant }), className)} {...props} />\n}\n\nexport { Badge, badgeVariants }"
+          }
       ]
     },
     {
@@ -747,7 +788,8 @@
           "type": "registry:component"
         }
       ]
-    },{
+    },
+    {
       "name": "sign-up-1",
       "type": "registry:block",
       "title": "Sign Up Page 1",
@@ -989,15 +1031,50 @@
       ]
     },
     {
-      "name": "logo-cloud-1",
+      "name": "navbar-1",
       "type": "registry:block",
-      "title": "Logo Cloud 1",
-      "description": "Shadcn/ui website logo cloud section",
+      "title": "Navbar Block 1",
+      "description": "Layered UI website navbar block",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "framer-motion"
+      ],
       "files": [
         {
-          "path": "app/preview/logo-cloud/one/page.tsx",
+          "path": "app/preview/navbar/one/page.tsx",
           "type": "registry:component",
-          "target": "components/logo-cloud.tsx"
+          "target": "components/navbar.tsx"
+        },
+        {
+          "path": "components/logo.tsx",
+          "type": "registry:component",
+          "target": "components/logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-1",
+      "type": "registry:block",
+      "title": "Login Page 1",
+      "description": "Shadcn/ui Login Page",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "app/preview/login/one/page.tsx",
+          "content": "import { Logo } from '@/components/logo'\nimport { Button } from '@/components/ui/button'\nimport { Input } from '@/components/ui/input'\nimport { Label } from '@/components/ui/label'\nimport Link from 'next/link'\n\nexport default function LoginPage() {\n    return (\n        <section className=\"flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent\">\n            <form action=\"\" className=\"bg-card m-auto h-fit w-full max-w-sm rounded-[calc(var(--radius)+.125rem)] border p-0.5 shadow-md dark:[--color-muted:var(--color-zinc-900)]\">\n                <div className=\"p-8 pb-6\">\n                    <div>\n                        <Link href=\"/\" aria-label=\"go home\">\n                            <Logo />\n                        </Link>\n                        <h1 className=\"mb-1 mt-4 text-xl font-semibold\">Sign In to Tailus UI</h1>\n                        <p className=\"text-sm\">Welcome back! Sign in to continue</p>\n                    </div>\n\n                    <div className=\"mt-6 grid grid-cols-2 gap-3\">\n                        <Button type=\"button\" variant=\"outline\">\n                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"0.98em\" height=\"1em\" viewBox=\"0 0 256 262\">\n                                <path fill=\"#4285f4\" d=\"M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027\"></path>\n                                <path fill=\"#34a853\" d=\"M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1\"></path>\n                                <path fill=\"#fbbc05\" d=\"M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82c0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602z\"></path>\n                                <path fill=\"#eb4335\" d=\"M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251\"></path>\n                            </svg>\n                            <span>Google</span>\n                        </Button>\n                        <Button type=\"button\" variant=\"outline\">\n                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 256 256\">\n                                <path fill=\"#f1511b\" d=\"M121.666 121.666H0V0h121.666z\"></path>\n                                <path fill=\"#80cc28\" d=\"M256 121.666H134.335V0H256z\"></path>\n                                <path fill=\"#00adef\" d=\"M121.663 256.002H0V134.336h121.663z\"></path>\n                                <path fill=\"#fbbc09\" d=\"M256 256.002H134.335V134.336H256z\"></path>\n                            </svg>\n                            <span>Microsoft</span>\n                        </Button>\n                    </div>\n\n                    <hr className=\"my-4 border-dashed\" />\n\n                    <div className=\"space-y-6\">\n                        <div className=\"space-y-2\">\n                            <Label htmlFor=\"email\" className=\"block text-sm\">\n                                Username\n                            </Label>\n                            <Input type=\"email\" required name=\"email\" id=\"email\" />\n                        </div>\n\n                        <div className=\"space-y-0.5\">\n                            <div className=\"flex items-center justify-between\">\n                                <Label htmlFor=\"pwd\" className=\"text-title text-sm\">\n                                    Password\n                                </Label>\n                                <Button asChild variant=\"link\" size=\"sm\">\n                                    <Link href=\"#\" className=\"link intent-info variant-ghost text-sm\">\n                                        Forgot your Password ?\n                                    </Link>\n                                </Button>\n                            </div>\n                            <Input type=\"password\" required name=\"pwd\" id=\"pwd\" className=\"input sz-md variant-mixed\" />\n                        </div>\n\n                        <Button className=\"w-full\">Sign In</Button>\n                    </div>\n                </div>\n\n                <div className=\"bg-muted rounded-(--radius) border p-3\">\n                    <p className=\"text-accent-foreground text-center text-sm\">\n                        Don't have an account ?\n                        <Button asChild variant=\"link\" className=\"px-2\">\n                            <Link href=\"#\">Create account</Link>\n                        </Button>\n                    </p>\n                </div>\n            </form>\n        </section>\n    )\n}\n",
+          "type": "registry:component",
+          "target": "components/login.tsx"
+        },
+        {
+          "path": "components/logo.tsx",
+          "content": "import { cn } from '@/lib/utils'\nimport { motion } from 'motion/react'\n\nexport const Logo = ({ className }: { className?: string }) => {\n    return (\n        <svg\n            className={cn('size-7 w-7', className)}\n            viewBox=\"0 0 71 25\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\">\n            <path\n                d=\"M61.25 1.625L70.75 1.5625C70.75 4.77083 70.25 7.79167 69.25 10.625C68.2917 13.4583 66.8958 15.9583 65.0625 18.125C63.2708 20.25 61.125 21.9375 58.625 23.1875C56.1667 24.3958 53.4583 25 50.5 25C46.875 25 43.6667 24.2708 40.875 22.8125C38.125 21.3542 35.125 19.2083 31.875 16.375C29.75 14.4167 27.7917 12.8958 26 11.8125C24.2083 10.7292 22.2708 10.1875 20.1875 10.1875C18.0625 10.1875 16.25 10.7083 14.75 11.75C13.25 12.75 12.0833 14.1875 11.25 16.0625C10.4583 17.9375 10.0625 20.1875 10.0625 22.8125L0 22.9375C0 19.6875 0.479167 16.6667 1.4375 13.875C2.4375 11.0833 3.83333 8.64583 5.625 6.5625C7.41667 4.47917 9.54167 2.875 12 1.75C14.5 0.583333 17.2292 0 20.1875 0C23.8542 0 27.1042 0.770833 29.9375 2.3125C32.8125 3.85417 35.7708 5.97917 38.8125 8.6875C41.1042 10.7708 43.1042 12.3333 44.8125 13.375C46.5625 14.375 48.4583 14.875 50.5 14.875C52.6667 14.875 54.5417 14.3125 56.125 13.1875C57.75 12.0625 59 10.5 59.875 8.5C60.7917 6.5 61.25 4.20833 61.25 1.625Z\"\n                fill=\"currentColor\"\n            />\n        </svg>\n    )\n}\n\nexport const LogoStroke = ({ className }: { className?: string }) => {\n    return (\n        <svg\n            className={cn('size-7 w-7', className)}\n            viewBox=\"0 0 71 25\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\">\n            <path\n                d=\"M61.25 1.625L70.75 1.5625C70.75 4.77083 70.25 7.79167 69.25 10.625C68.2917 13.4583 66.8958 15.9583 65.0625 18.125C63.2708 20.25 61.125 21.9375 58.625 23.1875C56.1667 24.3958 53.4583 25 50.5 25C46.875 25 43.6667 24.2708 40.875 22.8125C38.125 21.3542 35.125 19.2083 31.875 16.375C29.75 14.4167 27.7917 12.8958 26 11.8125C24.2083 10.7292 22.2708 10.1875 20.1875 10.1875C18.0625 10.1875 16.25 10.7083 14.75 11.75C13.25 12.75 12.0833 14.1875 11.25 16.0625C10.4583 17.9375 10.0625 20.1875 10.0625 22.8125L0 22.9375C0 19.6875 0.479167 16.6667 1.4375 13.875C2.4375 11.0833 3.83333 8.64583 5.625 6.5625C7.41667 4.47917 9.54167 2.875 12 1.75C14.5 0.583333 17.2292 0 20.1875 0C23.8542 0 27.1042 0.770833 29.9375 2.3125C32.8125 3.85417 35.7708 5.97917 38.8125 8.6875C41.1042 10.7708 43.1042 12.3333 44.8125 13.375C46.5625 14.375 48.4583 14.875 50.5 14.875C52.6667 14.875 54.5417 14.3125 56.125 13.1875C57.75 12.0625 59 10.5 59.875 8.5C60.7917 6.5 61.25 4.20833 61.25 1.625Z\"\n                fill=\"none\"\n                strokeWidth={0.5}\n                stroke=\"currentColor\"\n            />\n        </svg>\n    )\n}\n",
+          "type": "registry:component"
         }
       ]
     },
@@ -1035,16 +1112,24 @@
       "name": "pricing-1",
       "type": "registry:block",
       "title": "Pricing Block 1",
-      "description": "Shadcn/ui website pricing section",
+      "description": "Shadcn/ui website pricing section for LayeredUI",
       "registryDependencies": [
-        "button",
-        "card"
+        "framer-motion",
+        "lucide-react"
       ],
       "files": [
         {
           "path": "app/preview/pricing/one/page.tsx",
+          "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Badge } from \"@/components/ui/badge\"\nimport { Box, Layers, Zap } from \"lucide-react\"\n\nconst plans = [\n  {\n    name: \"Basic plan\",\n    price: 9,\n    description:\n      \"Perfect for small businesses or startups, our Starter Plan gives you the essential tools to manage your finances with ease\",\n    icon: Box,\n  },\n  {\n    name: \"Pro plan\",\n    price: 19,\n    description:\n      \"Designed for growing businesses, the Basic Plan expands on our Starter package with additional features\",\n    icon: Layers,\n  },\n  {\n    name: \"Enterprise plan\",\n    price: 49,\n    description:\n      \"Tailored for large enterprises, this plan offers advanced features, personalized support, and the scalability.\",\n    icon: Zap,\n  },\n]\n\nconst PricingSection2 = () => {\n  const [isYearly, setIsYearly] = useState(false)\n\n  return (\n    <section className=\"relative py-16 sm:py-20 md:py-28 overflow-hidden\">\n      {/* Header */}\n      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16\">\n        <div className=\"flex flex-col items-center text-center gap-6 sm:gap-8\">\n          {/* Badge */}\n          <div className=\"flex items-center justify-center gap-2 sm:gap-3\">\n            <div className=\"flex items-center\">\n              <div className=\"w-12 sm:w-20 h-px bg-gradient-to-l from-primary/30 to-transparent\"></div>\n            </div>\n\n            <Badge variant=\"hero\" className=\"group\">\n              <span className=\"text-sm font-normal\">Pricing</span>\n            </Badge>\n\n            <div className=\"flex items-center\">\n              <div className=\"w-12 sm:w-20 h-px bg-gradient-to-r from-primary/30 to-transparent\"></div>\n            </div>\n          </div>\n\n          {/* Heading and Description */}\n          <div className=\"flex flex-col items-center gap-4 sm:gap-6\">\n            <h2 className=\"text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-foreground px-4\">\n              Simple and transparent pricing\n            </h2>\n\n            <p className=\"max-w-3xl text-muted-foreground text-sm sm:text-base font-normal leading-relaxed px-4\">\n              Choose a plan that fits your business needs and budget. No hidden fees, no surprises—just straightforward\n              pricing for powerful financial management.\n            </p>\n          </div>\n        </div>\n      </div>\n\n      {/* Toggle */}\n      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 flex justify-center\">\n        <div className=\"relative bg-muted/30 backdrop-blur-sm rounded-full p-2 border border-border inline-flex shadow-sm\">\n          <div\n            className=\"absolute top-2 bottom-2 bg-card rounded-full shadow-md transition-all duration-300 ease-out\"\n            style={{\n              left: isYearly ? \"50%\" : \"0.5rem\",\n              right: isYearly ? \"0.5rem\" : \"50%\",\n            }}\n          />\n\n          <button\n            onClick={() => setIsYearly(false)}\n            className={`relative z-10 px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base transition-colors ${\n              !isYearly ? \"text-foreground\" : \"text-muted-foreground\"\n            }`}\n          >\n            Monthly\n          </button>\n\n          <button\n            onClick={() => setIsYearly(true)}\n            className={`relative z-10 px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base transition-colors ${\n              isYearly ? \"text-foreground\" : \"text-muted-foreground\"\n            }`}\n          >\n            Yearly\n          </button>\n        </div>\n      </div>\n\n      {/* Pricing Cards */}\n      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n        <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8\">\n          {plans.map((plan, index) => {\n            const Icon = plan.icon\n            return (\n              <div\n                key={index}\n                className=\"relative flex flex-col bg-card rounded-3xl p-6 sm:p-8 border border-border transition-all duration-300 group hover:-translate-y-2 hover:border-primary/30 hover:shadow-[var(--shadow-card)]\"\n              >\n                {/* Hover glow effect */}\n                <div className=\"absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\" />\n\n                {/* Header with icon and name */}\n                <div className=\"relative z-10 flex items-center gap-4 mb-8\">\n                  {/* Icon */}\n                  <div className=\"w-16 h-16 rounded-full flex items-center justify-center border border-border bg-secondary/50 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:bg-primary/10\">\n                    <Icon className=\"w-6 h-6 text-primary\" />\n                  </div>\n\n                  {/* Plan Name */}\n                  <h3 className=\"text-xl font-normal text-foreground\">{plan.name}</h3>\n                </div>\n\n                {/* Price */}\n                <div className=\"relative z-10 flex items-end gap-2 mb-6\">\n                  <span className=\"text-4xl sm:text-5xl font-normal text-foreground\">\n                    ${isYearly ? plan.price * 10 : plan.price}\n                  </span>\n                  <span className=\"text-base text-muted-foreground mb-2\">/Month</span>\n                </div>\n\n                {/* Description */}\n                <p className=\"relative z-10 text-sm sm:text-base text-muted-foreground leading-relaxed mb-8 flex-1\">\n                  {plan.description}\n                </p>\n\n                {/* CTA Button */}\n                <div className=\"relative z-10\">\n                  <Button className=\"w-full rounded-full py-6 font-medium bg-card border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300\">\n                    Get started\n                  </Button>\n                </div>\n              </div>\n            )\n          })}\n        </div>\n      </div>\n    </section>\n  )\n}\n\nexport default PricingSection2\n",
           "type": "registry:component",
           "target": "components/pricing.tsx"
+        },
+
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/badge.tsx",
+          "content": "import type * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90\",\n        destructive:\n          \"border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60\",\n        outline: \"text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n        hero: \"border-border/50 bg-secondary/50 text-foreground backdrop-blur-sm px-4 py-2 rounded-full\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction Badge({\n  className,\n  variant,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"span\"\n\n  return <Comp data-slot=\"badge\" className={cn(badgeVariants({ variant }), className)} {...props} />\n}\n\nexport { Badge, badgeVariants }"
         }
       ]
     },

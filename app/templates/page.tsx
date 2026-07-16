@@ -120,7 +120,7 @@ const templates: TemplateItem[] = [
   },
 ];
 
-// Template Preview Card (templates-section style) //
+// Template Preview Card (templates-section style)
 
 const TemplateCard = ({ template }: { template: TemplateItem }) => {
   return (
@@ -140,7 +140,7 @@ const TemplateCard = ({ template }: { template: TemplateItem }) => {
   );
 };
 
-// Page Component //
+// Page Component
 export default function TemplatesPage() {
   return (
     <>

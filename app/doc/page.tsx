@@ -5,8 +5,10 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { motion, useInView, type Variants } from "framer-motion";
-import { useRef } from "react";
+import { Check, Copy } from "lucide-react";
+import { useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 // Variants //
 
@@ -56,15 +58,52 @@ const cardVariants: Variants = {
 
 // Components //
 function CodeBlock({ code, lang }: { code: string; lang: string }) {
+    const [copied, setCopied] = useState(false);
+
+    const copyCode = async () => {
+        try {
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(code);
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = code;
+                textarea.style.position = "fixed";
+                textarea.style.left = "-9999px";
+                textarea.style.top = "0";
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+            }
+
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1500);
+        } catch (error) {
+            console.error("Failed to copy code:", error);
+        }
+    };
+
     return (
-        <div className="relative border border-border bg-muted/40 overflow-x-auto rounded-lg shadow-sm">
-            <div className="flex items-center gap-2 border-b border-border bg-muted/20 px-4 py-2">
+        <div className="relative overflow-hidden rounded-lg border border-border bg-muted/40 shadow-sm">
+            <div className="flex min-h-10 items-center justify-between gap-3 border-b border-border bg-muted/20 px-4 py-2">
                 <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                     {lang}
                 </span>
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={copyCode}
+                    className="h-7 gap-1.5 px-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase hover:text-foreground"
+                    aria-label={copied ? "Code copied" : "Copy code"}
+                >
+                    {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+                    {copied ? "Copied" : "Copy"}
+                </Button>
             </div>
-            <pre className="px-4 py-4">
-                <code className="font-mono text-xs leading-relaxed text-foreground">{code}</code>
+            <pre className="overflow-x-auto px-4 py-4">
+                <code className="whitespace-pre font-mono text-xs leading-relaxed text-foreground">{code}</code>
             </pre>
         </div>
     );
@@ -89,7 +128,7 @@ const steps = [
                     lang="json"
                     code={`{
   "registries": {
-    "@layeredUI": "https://layered-blocks.vercel.app/r/{name}.json"
+    "@layeredui": "https://layered-ui.vercel.app/r/{name}.json"
   }
 }`}
                 />
@@ -125,7 +164,7 @@ const steps = [
                     code="pnpm dlx shadcn add @layeredUI/hero-section-1"
                 />
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                    Don't guess the block name — copy the CLI command from each block on its category page.
+                    Don't guess the block name - copy the CLI command from each block on its category page.
                 </p>
             </>
         ),
@@ -229,7 +268,7 @@ const RegistryPage = () => {
                             initial="hidden"
                             animate={headerInView ? "visible" : "hidden"}
                         >
-                            Install production‑ready shadcn/UI marketing blocks directly into your project
+                            Install production-ready shadcn/UI marketing blocks directly into your project
                             using the shadcn CLI. Add the registry once and pull blocks by name.
                         </motion.p>
                     </div>

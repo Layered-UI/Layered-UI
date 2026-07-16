@@ -9,14 +9,14 @@ import { useMedia } from 'use-media'
 import { Button } from './ui/button'
 import { cn, titleToNumber } from '@/lib/utils'
 import CodeBlock from './code-block'
-import Link from 'next/link'
 import { OpenInV0Button } from './open-in-v0'
 import { isUrlCached } from '@/lib/serviceWorker'
 import { motion, AnimatePresence } from 'motion/react'
 import { HeartIcon, type HeartIconHandle } from '@/components/animation-logos/HeartIcon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { RoseTwoLoader } from './rose-two-loader'
 
-// --- Types & Context ---
+// Types & Context 
 
 type ViewMode = 'preview' | 'code'
 
@@ -35,6 +35,8 @@ interface BlockPreviewContextValue {
     iframeLoaded: boolean
     loved: boolean
     setLoved: (loved: boolean | ((prev: boolean) => boolean)) => void
+    reload: () => void
+    reloadKey: number
     title: string
     category: string
     preview: string
@@ -59,7 +61,7 @@ function useBlockPreview() {
     return context
 }
 
-// --- Provider ---
+// Provider
 
 const DEFAULT_SIZE = 100
 const SM_SIZE = 30
@@ -84,6 +86,11 @@ export const BlockPreviewProvider: React.FC<{
     // FIX: Added iframeLoaded state so opacity/visibility logic has a reliable signal
     const [iframeLoaded, setIframeLoaded] = useState(false)
     const [loved, setLoved] = useState(false)
+    const [reloadKey, setReloadKey] = useState(0)
+    const reload = () => {
+        setIframeLoaded(false)
+        setReloadKey((prev) => prev + 1)
+    }
 
     const terminalCode = `pnpm dlx shadcn@latest add @layeredui/${category}-${titleToNumber(title)}`
 
@@ -110,9 +117,9 @@ export const BlockPreviewProvider: React.FC<{
                 // On mobile, blocks near the fold with threshold: 0.1 could miss the trigger
                 // if the element is partially clipped or the viewport is narrow.
                 threshold: 0,
-                // FIX: Pre-load iframes 300px before they scroll into view on mobile,
+                // FIX: Pre-load iframes 600px before they scroll into view on mobile,
                 // reducing the white screen gap between scroll and content appearing.
-                rootMargin: '300px 0px',
+                rootMargin: '600px 0px',
             }
         )
 
@@ -203,14 +210,14 @@ export const BlockPreviewProvider: React.FC<{
         // Safety net: show the iframe after a delay even if events fail
         const fallbackTimer = setTimeout(() => {
             setIframeLoaded(true)
-        }, 3000) // Reduced from 8000ms for better perceived speed
+        }, 5000) // 5s safety net
 
         return () => {
             iframe.removeEventListener('load', handleLoad)
             clearTimeout(fallbackTimer)
             if (resizeObserver) resizeObserver.disconnect()
         }
-    }, [shouldLoadIframe, preview])
+    }, [shouldLoadIframe, preview, reloadKey])
 
     const handleLove = () => {
         setLoved((prev) => !prev)
@@ -221,7 +228,7 @@ export const BlockPreviewProvider: React.FC<{
         mode, setMode, width, setWidth, iframeHeight, setIframeHeight,
         shouldLoadIframe, setShouldLoadIframe, cachedHeight, isIframeCached,
         iframeLoaded,
-        loved, setLoved, title, category, preview, code, terminalCode,
+        loved, setLoved, reload, reloadKey, title, category, preview, code, terminalCode,
         copied,
         copy: (e?: any) => copy(e),
         cliCopied,
@@ -239,10 +246,10 @@ export const BlockPreviewProvider: React.FC<{
     )
 }
 
-// --- Sub-components ---
+// Sub-components
 
 function BlockPreviewToolbar() {
-    const { mode, setMode, title, width, resizablePanelRef, handleLove, loved, heartIconRef, cliCopy, cliCopied, preview, category } = useBlockPreview()
+    const { mode, setMode, title, width, resizablePanelRef, handleLove, loved, heartIconRef, cliCopy, cliCopied, preview, category, reload, iframeLoaded } = useBlockPreview()
 
     return (
         <div className="relative border-y">
@@ -276,6 +283,22 @@ function BlockPreviewToolbar() {
                             <span className="hidden sm:inline text-xs">Code</span>
                         </Button>
                     </div>
+
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button
+                                    onClick={reload}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                                >
+                                    <RefreshCw className={cn("size-3.5 transition-transform", !iframeLoaded && "animate-spin")} />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>Reload Preview</TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
 
                     <Separator orientation="vertical" className="mx-2 hidden h-4 lg:block" />
                     <span className="text-sm font-medium truncate max-w-[150px] md:max-w-none capitalize">{title}</span>
@@ -426,7 +449,7 @@ function BlockPreviewContent() {
 
 function BlockPreviewView() {
     // FIX: Consume iframeLoaded instead of relying on cachedHeight/isIframeCached for opacity
-    const { mode, resizablePanelRef, setWidth, blockRef, shouldLoadIframe, iframeRef, title, category, cachedHeight, iframeHeight, preview, iframeLoaded } = useBlockPreview()
+    const { mode, resizablePanelRef, setWidth, blockRef, shouldLoadIframe, iframeRef, title, category, cachedHeight, iframeHeight, preview, iframeLoaded, reloadKey } = useBlockPreview()
     const isLarge = useMedia('(min-width: 1024px)')
 
     if (mode !== 'preview') return null
@@ -444,16 +467,28 @@ function BlockPreviewView() {
                 <Panel id="preview-panel" order={1} defaultSize={DEFAULT_SIZE} minSize={SM_SIZE} className="relative border-x">
                     <div ref={blockRef} className="w-full relative">
                         {/* Show spinner while shouldLoadIframe is true but iframe hasn't finished loading yet */}
-                        {shouldLoadIframe && !iframeLoaded && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-zinc-50/50 dark:bg-zinc-950/50 z-20">
-                                <RefreshCw className="size-5 animate-spin text-muted-foreground/50" />
-                            </div>
-                        )}
+                        <AnimatePresence>
+                            {shouldLoadIframe && !iframeLoaded && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-950 z-20 gap-6"
+                                >
+                                    <RoseTwoLoader size={80} className="text-primary/40" />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <span className="text-xs font-medium text-muted-foreground animate-pulse">Loading Preview...</span>
+                                        <span className="text-[10px] text-muted-foreground/40 font-mono tracking-tighter">ROSE_TWO</span>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
                         {shouldLoadIframe ? (
                             <iframe
                                 // FIX: Key now includes category so React never reuses iframes across categories
-                                key={`${category}-${title}-iframe`}
+                                key={`${category}-${title}-iframe-${reloadKey}`}
                                 // FIX: Always use "eager" — we already control lazy loading ourselves
                                 // via IntersectionObserver + shouldLoadIframe. The browser's native
                                 // loading="lazy" adds an extra unpredictable delay on top of ours,
@@ -479,7 +514,7 @@ function BlockPreviewView() {
                             />
                         ) : (
                             <div className="flex min-h-56 items-center justify-center">
-                                <RefreshCw className="size-5 animate-spin text-muted-foreground/50" />
+                                <RoseTwoLoader size={40} className="text-primary/20" />
                             </div>
                         )}
                     </div>
@@ -552,7 +587,7 @@ function BlockPreviewCode() {
     )
 }
 
-// --- Main Component ---
+// Main Component
 
 export interface BlockPreviewProps {
     code?: string

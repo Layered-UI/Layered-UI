@@ -42,6 +42,11 @@ export const SiteFooter = () => (
                         <ArrowUpRight className="!size-3.5 opacity-50" />
                     </Link>
                 </Button>
+                <Button asChild variant="link" className="text-foreground decoration-primary -ml-4 gap-1">
+                    <Link href="/changelog" className="text-sm">
+                        Changelog
+                    </Link>
+                </Button>
                 <ThemeToggle />
             </div>
         </div>
