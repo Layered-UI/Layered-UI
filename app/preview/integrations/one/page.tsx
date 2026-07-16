@@ -14,11 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-// ─── Easing ───────────────────────────────────────────────────────────────────
+// Easing
 const expo = [0.16, 1, 0.3, 1] as const
 
-// ─── Variants ─────────────────────────────────────────────────────────────────
-
+// Variants
 const lineVariant = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: {
@@ -84,7 +83,7 @@ const ctaVariant = {
   },
 }
 
-// ─── IntegrationCard ──────────────────────────────────────────────────────────
+// IntegrationCard
 
 const IntegrationCard = ({
   children,
@@ -121,7 +120,7 @@ const IntegrationCard = ({
   );
 };
 
-// ─── IntegrationsSection ──────────────────────────────────────────────────────
+// IntegrationsSection
 
 export default function IntegrationsSection() {
   const headerRef = useRef(null)

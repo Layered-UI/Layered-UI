@@ -2,6 +2,8 @@
 
 The Layered Registry lets you install production‑ready shadcn/UI marketing blocks directly into your project using the shadcn CLI. Add the registry once and then pull blocks by name, no rigid templates, just flexible, composable components you can customize and scale across marketing sites.
 
+For the full project architecture, including how preview routes, `data/blocks.ts`, `registry.json`, and `public/r` work together, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
 ## Add registry
 
 Add the Layered registry namespace to your `components.json`.
@@ -9,7 +11,7 @@ Add the Layered registry namespace to your `components.json`.
 ```json
 {
 	"registries": {
-	  "@layeredui": "https://layered-blocks.vercel.app/r/{name}.json"
+	  "@layeredui": "https://layered-ui.vercel.app/r/{name}.json"
 	}
 }
 ```
@@ -52,3 +54,7 @@ You can now prompt the server. Here are some prompts to try:
 - Build me a landing page using a hero and features section from layered registry
 - Build me a pricing page using a pricing, logo cloud, and features blocks from layered registry
 - Build me a contact page with contact form and footer from layered registry
+
+## Credits
+
+Layered UI is built by KingTroy125 and contributors. Registry blocks build on the shadcn/ui, Radix UI, Tailwind CSS, React, Next.js, Lucide, and Motion ecosystems; see [ARCHITECTURE.md](./ARCHITECTURE.md#credits) for broader attribution notes.

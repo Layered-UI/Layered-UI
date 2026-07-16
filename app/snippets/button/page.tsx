@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function BadgesPage() {
   return (
     <div className="*:has-[[data-state=open]]:bg-muted/25 *:hover:bg-muted/25 grid grid-cols-2 divide-x divide-y divide-dashed *:relative *:flex *:aspect-square *:items-center *:justify-center *:p-12 sm:grid-cols-2 lg:grid-cols-3 lg:*:aspect-video 2xl:mx-auto 2xl:max-w-7xl">
-      {/* ── Full Badge Component (with lines) ── */}
+      {/* Full Badge Component (with lines) */}
       <div className="group">
         <div className="flex items-center justify-center gap-3">
           <div className="h-px w-12 bg-gradient-to-l from-primary/30 to-transparent sm:w-20" />
@@ -49,7 +49,7 @@ export default function BadgesPage() {
 
       {/* ────────────────────────── Button Snippets ──────────────────────────── */}
 
-      {/* ── Ghost Button ── */}
+      {/* Ghost Button */}
       <div className="group">
         <Button variant="ghost">Ghost</Button>
         <div className={actionClasses}>
@@ -61,7 +61,7 @@ export default function BadgesPage() {
         </div>
       </div>
 
-      {/* ── Link Button ── */}
+      {/* Link Button */}
       <div className="group">
         <Button variant="link">Link</Button>
         <div className={actionClasses}>

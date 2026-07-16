@@ -111,6 +111,13 @@ export const blocks: Block[] = [
         preview: '/preview/how-it-works/one',
         get code() { return loadCode('app/preview/how-it-works/one/page.tsx') },
     },
+    {
+        slug: 'how-it-works',
+        title: 'two',
+        category: 'how-it-works',
+        preview: '/preview/how-it-works/two',
+        get code() { return loadCode('app/preview/how-it-works/two/page.tsx') },
+    },
 
     {
         slug: 'integrations',

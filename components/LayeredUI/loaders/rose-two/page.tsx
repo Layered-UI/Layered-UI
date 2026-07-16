@@ -7,10 +7,6 @@ export default function RoseTwoLoaderDemo() {
                 <div className="w-[min(72vmin,420px)] aspect-square flex items-center justify-center">
                     <RoseTwoLoader size={420} className="text-white" />
                 </div>
-                <div className="text-center space-y-2">
-                    <h1 className="text-2xl font-bold">Rose Two</h1>
-                    <p className="text-sm tracking-widest uppercase opacity-60">r = a cos(2θ)</p>
-                </div>
             </div>
 
             <div className="max-w-[720px] w-full p-4 rounded-xl border border-white/10 bg-white/5 font-mono text-xs leading-relaxed text-white/80 whitespace-pre-wrap">
