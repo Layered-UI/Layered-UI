@@ -14,26 +14,21 @@ At runtime, every request enters the Next.js application through the App Router.
 
 Depending on the requested route, the application renders one of several product surfaces while sharing global providers, styling, and infrastructure.
 
-```text
-                    User Request
-                         │
-                         ▼
-                Next.js App Router
-                         │
-        ┌────────────────┼────────────────┐
-        │                │                │
-        ▼                ▼                ▼
- Marketing Site   Documentation    Component Catalog
-        │                │                │
-        └────────────────┼────────────────┘
-                         │
-                         ▼
-                 Shared Application Shell
-                         │
-        ┌────────────────┼────────────────┐
-        │                │                │
-        ▼                ▼                ▼
-     Components      Utilities       UI Primitives
+```mermaid
+---
+id: 85481ae1-71fd-47f2-80a5-99c922da356b
+---
+graph TD
+    A[User Request] --> B[Next.js App Router]
+    B --> C[Marketing Site]
+    B --> D[Documentation]
+    B --> E[Component Catalog]
+    C --> F[Shared Application Shell]
+    D --> F
+    E --> F
+    F --> G[Components]
+    F --> H[Utilities]
+    F --> I[UI Primitives]
 ```
 
 Every page inherits the same application shell while rendering its own content.
