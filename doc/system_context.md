@@ -22,34 +22,21 @@ These users interact with different parts of the application while relying on th
 
 # High-Level Context
 
-```text
-                                   Contributors
-                                        │
-                                        ▼
-                               Git Repository
-                                        │
-                                        ▼
-                             Next.js App Router
-                                        │
-        ┌───────────────────────────────┼───────────────────────────────┐
-        │                               │                               │
-        ▼                               ▼                               ▼
- Marketing Website            Documentation Site              Component Catalog
-        │                               │                               │
-        └───────────────────────────────┼───────────────────────────────┘
-                                        │
-                                        ▼
-                              Preview Route Components
-                                        │
-                                        ▼
-                              Registry Build Pipeline
-                                        │
-                                        ▼
-                             Static Registry JSON Files
-                                        │
-              ┌─────────────────────────┼─────────────────────────┐
-              ▼                         ▼                         ▼
-        shadcn CLI                MCP Clients             External Projects
+```mermaid
+flowchart TD
+    A[Contributors] --> B[Git Repository]
+    B --> C[Next.js App Router]
+    C --> D[Marketing Website]
+    C --> E[Documentation Site]
+    C --> F[Component Catalog]
+    D --> G[Preview Route Components]
+    E --> G
+    F --> G
+    G --> H[Registry Build Pipeline]
+    H --> I[Static Registry JSON Files]
+    I --> J[shadcn CLI]
+    I --> K[MCP Clients]
+    I --> L[External Projects]
 ```
 
 The Next.js application is the central system responsible for serving all user-facing experiences and generating installable registry artifacts.
