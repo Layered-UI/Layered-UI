@@ -128,7 +128,7 @@ const steps = [
                     lang="json"
                     code={`{
   "registries": {
-    "@layeredUI": "https://layered-ui.vercel.app/r/{name}.json"
+    "@layeredui": "https://layered-ui.vercel.app/r/{name}.json"
   }
 }`}
                 />
