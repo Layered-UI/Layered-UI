@@ -152,29 +152,15 @@ Client components are used only where browser APIs are required.
 
 A simplified request lifecycle is shown below.
 
-```text
-Browser Request
-       │
-       ▼
-Next.js Router
-       │
-       ▼
-Resolve Route
-       │
-       ▼
-Load Layout
-       │
-       ▼
-Load Page
-       │
-       ▼
-Compose Components
-       │
-       ▼
-Render HTML
-       │
-       ▼
-Hydrate Interactive Components
+```mermaid
+graph TD
+    A[Browser Request] --> B[Next.js Router]
+    B --> C[Resolve Route]
+    C --> D[Load Layout]
+    D --> E[Load Page]
+    E --> F[Compose Components]
+    F --> G[Render HTML]
+    G --> H[Hydrate Interactive Components]
 ```
 
 This separation allows static content to load quickly while enabling rich client-side interactions.
