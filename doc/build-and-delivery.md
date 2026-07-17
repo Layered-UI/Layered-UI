@@ -26,29 +26,16 @@ Every build should produce identical output when executed from the same source r
 
 The complete build pipeline follows a predictable sequence.
 
-```text
-Source Code
-      │
-      ▼
-TypeScript Compilation
-      │
-      ▼
-Next.js Build
-      │
-      ├──────────────┐
-      │              │
-      ▼              ▼
-Static Pages   Registry Generation
-      │              │
-      └──────┬───────┘
-             ▼
-Optimized Assets
-             │
-             ▼
-Production Output
-             │
-             ▼
-Deployment Platform
+```mermaid
+flowchart TD
+    A[Source Code] --> B[TypeScript Compilation]
+    B --> C[Next.js Build]
+    C --> D[Static Pages]
+    C --> E[Registry Generation]
+    D --> F[Optimized Assets]
+    E --> F
+    F --> G[Production Output]
+    G --> H[Deployment Platform]
 ```
 
 Each stage performs a specific transformation while preserving a deterministic output.
