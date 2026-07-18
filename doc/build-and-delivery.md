@@ -173,14 +173,10 @@ These optimizations reduce download size and improve runtime performance.
 
 The delivery architecture is designed for aggressive caching.
 
-```text
-Browser
-     │
-     ▼
-CDN Cache
-     │
-     ▼
-Static Assets
+```mermaid
+flowchart TD 
+      A[Browser] --> B[CDN Cache]
+      B --> C[Static Assets]
 ```
 
 Suitable cache candidates include:
