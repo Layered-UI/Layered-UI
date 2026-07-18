@@ -67,20 +67,12 @@ Local development prioritizes fast iteration.
 
 Typical workflow:
 
-```text
-Developer
-      │
-      ▼
-npm run dev
-      │
-      ▼
-Next.js Development Server
-      │
-      ▼
-Hot Reload
-      │
-      ▼
-Immediate Feedback
+```mermaid
+flowchart TD
+    A[Developer] --> B[npm run dev]
+    B --> C[Next.js Development Server]
+    C --> D[Hot Reload]
+    D --> E[Immediate Feedback]
 ```
 
 The development server enables rapid iteration while preserving production parity.
