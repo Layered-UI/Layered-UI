@@ -101,17 +101,11 @@ Only production-ready assets are included in the final output.
 
 The registry is generated independently from the application.
 
-```text
-registry.json
-      │
-      ▼
-Registry Builder
-      │
-      ▼
-Validation
-      │
-      ▼
-public/r/
+```mermaid
+flowchart TD
+    A[registry.json] --> B[Registry Builder]
+    B --> C[Validation]
+    C --> D[public/r/]
 ```
 
 Each registry item becomes a static JSON file that can be consumed without requiring a backend service.
