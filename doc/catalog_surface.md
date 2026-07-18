@@ -110,20 +110,12 @@ This explicit approach keeps the catalog predictable and easy to maintain.
 
 Every block follows the same lifecycle.
 
-```text
-Preview Component
-        │
-        ▼
-Catalog Metadata
-        │
-        ▼
-Category Page
-        │
-        ▼
-Block Preview
-        │
-        ▼
-Registry Package
+```mermaid
+flowchart RL
+      A[Preview Component] --> B[Catalog Metadata]
+      B --> C[Category Page]
+      C --> D[Block Preview]
+      D --> E[Registry Package]
 ```
 
 Because every stage references the same implementation, documentation and installation remain synchronized.
