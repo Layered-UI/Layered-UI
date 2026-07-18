@@ -195,29 +195,15 @@ Static delivery minimizes infrastructure requirements while improving response t
 
 A typical CI pipeline follows this sequence.
 
-```text
-Pull Request
-      │
-      ▼
-Install Dependencies
-      │
-      ▼
-Lint
-      │
-      ▼
-Type Check
-      │
-      ▼
-Run Tests
-      │
-      ▼
-Build Application
-      │
-      ▼
-Generate Registry
-      │
-      ▼
-Deploy
+```mermaid
+flowchart TD
+    A[Pull Request] --> B[Install Dependencies]
+    B --> C[Lint]
+    C --> D[Type Check]
+    D --> E[Run Tests]
+    E --> F[Build Application]
+    F --> G[Generate Registry]
+    G --> H[Deploy]
 ```
 
 Automated validation helps detect issues before deployment.
