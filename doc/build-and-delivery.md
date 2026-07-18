@@ -85,20 +85,12 @@ Production builds optimize the application for deployment.
 
 Typical workflow:
 
-```text
-Source Repository
-       │
-       ▼
-npm run build
-       │
-       ▼
-Static Generation
-       │
-       ▼
-Bundle Optimization
-       │
-       ▼
-Production Build
+```mermaid
+flowchart TD
+    A[Source Repository] --> B[npm run build]
+    B --> C[Static Generation]
+    C --> D[Bundle Optimization]
+    D --> E[Production Build]
 ```
 
 Only production-ready assets are included in the final output.
