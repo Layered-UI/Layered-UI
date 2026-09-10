@@ -197,23 +197,9 @@ Production builds may fail because of:
 
 ## Mitigation
 
-```text id="2x8srm"
-Commit
-   │
-   ▼
-Lint
-   │
-   ▼
-Type Check
-   │
-   ▼
-Tests
-   │
-   ▼
-Build
-   │
-   ▼
-Deploy
+```mermaid
+flowchart TD
+    Commit --> Lint --> TypeCheck --> Tests --> Build --> Deploy
 ```
 
 Every change should pass automated validation before deployment.
