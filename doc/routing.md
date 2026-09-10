@@ -212,24 +212,17 @@ These routes are consumed by external tooling such as the shadcn CLI and other r
 
 A typical request follows this lifecycle.
 
-```text
-Browser Request
-       │
-       ▼
-Next.js Router
-       │
-       ▼
-Resolve Route
-       │
-       ├── Static
-       ├── Dynamic
-       └── Asset
-       │
-       ▼
-Render Layout
-       │
-       ▼
-Render Page
+```mermaid
+flowchart TD
+    BrowserRequest --> NextjsRouter
+    NextjsRouter --> ResolveRoute
+    ResolveRoute --> Static
+    ResolveRoute --> Dynamic
+    ResolveRoute --> Asset
+    Static --> RenderLayout
+    Dynamic --> RenderLayout
+    Asset --> RenderLayout
+    RenderLayout --> RenderPage
 ```
 
 The App Router automatically resolves the appropriate page based on the requested path.
