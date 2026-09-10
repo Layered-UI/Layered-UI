@@ -159,7 +159,7 @@ The repository should remain organized around architectural responsibilities rat
 
 Examples:
 
-✅ Good
+Good
 
 ```text id="fvn2gs"
 components/
@@ -317,20 +317,9 @@ Releases should prioritize stability.
 
 Recommended release workflow:
 
-```text id="k2zqj9"
-Develop
-    │
-    ▼
-Review
-    │
-    ▼
-Test
-    │
-    ▼
-Build
-    │
-    ▼
-Publish
+```mermaid
+flowchart LR 
+    Develop --> Review --> Test --> Build --> Publish
 ```
 
 Every release should be reproducible from source control.
