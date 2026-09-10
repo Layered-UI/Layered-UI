@@ -249,17 +249,11 @@ Documentation should explain implementation rather than duplicate source code.
 
 Dependencies should always flow downward.
 
-```text
-Pages
-│
-▼
-Application Components
-│
-▼
-UI Components
-│
-▼
-Utilities
+```mermaid
+flowchart TD
+    Pages --> ApplicationComponents
+    ApplicationComponents --> UIComponents
+    UIComponents --> Utilities
 ```
 
 Lower layers should never depend on higher-level layers.
