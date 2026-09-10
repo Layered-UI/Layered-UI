@@ -66,30 +66,20 @@ Generic building blocks live inside reusable UI packages, while marketing layout
 
 The system consists of several layers that work together.
 
-```text
-                           Developers
-                                │
-                                ▼
-                    Next.js App Router Application
-                                │
-        ┌───────────────────────┼────────────────────────┐
-        │                       │                        │
-        ▼                       ▼                        ▼
- Marketing Site          Documentation          Component Catalog
-        │                       │                        │
-        └───────────────────────┼────────────────────────┘
-                                │
-                                ▼
-                      Preview Route Components
-                                │
-                                ▼
-                    Registry Build Pipeline
-                                │
-                                ▼
-                  Static Registry JSON Files
-                                │
-                                ▼
-          shadcn CLI • MCP Clients • External Projects
+```mermaid
+flowchart TD
+    Developers --> NextjsAppRouterApplication
+    NextjsAppRouterApplication --> Marketing
+    NextjsAppRouterApplication --> Documentation
+    NextjsAppRouterApplication --> ComponentCatalog
+    Marketing --> PreviewRouteComponents
+    Documentation --> PreviewRouteComponents
+    ComponentCatalog --> PreviewRouteComponents
+    PreviewRouteComponents --> RegistryBuildPipeline
+    RegistryBuildPipeline --> StaticRegistryJsonFiles
+    StaticRegistryJsonFiles --> ShadcnCli
+    StaticRegistryJsonFiles --> McpClients
+    StaticRegistryJsonFiles --> ExternalProjects
 ```
 
 Every layer has a clearly defined responsibility while remaining connected through shared metadata and reusable components.
