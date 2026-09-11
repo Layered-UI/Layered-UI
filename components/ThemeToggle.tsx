@@ -13,7 +13,8 @@ export const ThemeToggle = () => {
     const [mounted, setMounted] = React.useState(false)
 
     React.useEffect(() => {
-        setMounted(true)
+        // Defer to avoid synchronous setState in effect warning
+        setTimeout(() => setMounted(true), 0)
 
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key.toLowerCase() === 'd') {
