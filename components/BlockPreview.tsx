@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react'
-import { Check, Code2, Copy, Eye, Maximize, Terminal, Smartphone, Tablet, Monitor, RefreshCw, ExternalLink } from 'lucide-react'
+import { Check, Code2, Copy, Eye, Terminal, Smartphone, Tablet, Monitor, RefreshCw, ExternalLink } from 'lucide-react'
 import { Panel, PanelGroup, PanelResizeHandle, type ImperativePanelGroupHandle } from 'react-resizable-panels'
 import { Separator } from '@/components/ui/separator'
 import { useCopyToClipboard } from '@/hooks/useClipboard'
@@ -145,10 +145,13 @@ export const BlockPreviewProvider: React.FC<{
             if (cached) {
                 const { height, timestamp } = JSON.parse(cached)
                 if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
-                    setCachedHeight(height)
-                    setIframeHeight(height)
-                    // FIX: If we have a valid cached height, treat it as already loaded
-                    setIframeLoaded(true)
+                    // Defer state updates to avoid synchronous setState in effect
+                    setTimeout(() => {
+                        setCachedHeight(height)
+                        setIframeHeight(height)
+                        // FIX: If we have a valid cached height, treat it as already loaded
+                        setIframeLoaded(true)
+                    }, 0)
                 }
             }
         } catch (error) {
@@ -230,9 +233,9 @@ export const BlockPreviewProvider: React.FC<{
         iframeLoaded,
         loved, setLoved, reload, reloadKey, title, category, preview, code, terminalCode,
         copied,
-        copy: (e?: any) => copy(e),
+        copy: (e?: React.MouseEvent) => copy(e),
         cliCopied,
-        cliCopy: (e?: any) => cliCopy(e),
+        cliCopy: (e?: React.MouseEvent) => cliCopy(e),
         handleLove, heartIconRef,
         resizablePanelRef, iframeRef, blockRef
     }

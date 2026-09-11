@@ -22,63 +22,65 @@ export const RoseTwoLoader: React.FC<RoseTwoLoaderProps> = ({
     const pathRef = useRef<SVGPathElement>(null)
     const particlesRef = useRef<(SVGCircleElement | null)[]>([])
 
-    const config = {
-        rotate: true,
-        trailSpan: 0.3,
-        rotationDurationMs: 28000,
-        pulseDurationMs: 4300,
-        roseA: 9.2,
-        roseABoost: 0.6,
-        roseBreathBase: 0.72,
-        roseBreathBoost: 0.28,
-        roseScale: 3.25,
-    }
-
-    const point = (progress: number, detailScale: number) => {
-        const t = progress * Math.PI * 2
-        const a = config.roseA + detailScale * config.roseABoost
-        const r = a * (config.roseBreathBase + detailScale * config.roseBreathBoost) * Math.cos(2 * t)
-        return {
-            x: 50 + Math.cos(t) * r * config.roseScale,
-            y: 50 + Math.sin(t) * r * config.roseScale,
-        }
-    }
-
-    const getDetailScale = (time: number) => {
-        const pulseProgress = (time % config.pulseDurationMs) / config.pulseDurationMs
-        const pulseAngle = pulseProgress * Math.PI * 2
-        return 0.52 + ((Math.sin(pulseAngle + 0.55) + 1) / 2) * 0.48
-    }
-
-    const getRotation = (time: number) => {
-        if (!config.rotate) return 0
-        return -((time % config.rotationDurationMs) / config.rotationDurationMs) * 360
-    }
-
-    const buildPath = (detailScale: number, steps = 480) => {
-        return Array.from({ length: steps + 1 }, (_, index) => {
-            const p = point(index / steps, detailScale)
-            return `${index === 0 ? 'M' : 'L'} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`
-        }).join(' ')
-    }
-
-    const normalizeProgress = (progress: number) => {
-        return ((progress % 1) + 1) % 1
-    }
-
-    const getParticle = (index: number, progress: number, detailScale: number) => {
-        const tailOffset = index / (particleCount - 1)
-        const p = point(normalizeProgress(progress - tailOffset * config.trailSpan), detailScale)
-        const fade = Math.pow(1 - tailOffset, 0.56)
-        return {
-            x: p.x,
-            y: p.y,
-            radius: 0.9 + fade * 2.7,
-            opacity: 0.04 + fade * 0.96,
-        }
-    }
-
     useEffect(() => {
+        const config = {
+            rotate: true,
+            trailSpan: 0.3,
+            rotationDurationMs: 28000,
+            pulseDurationMs: 4300,
+            roseA: 9.2,
+            roseABoost: 0.6,
+            roseBreathBase: 0.72,
+            roseBreathBoost: 0.28,
+            roseScale: 3.25,
+        }
+
+        const { rotate, trailSpan, rotationDurationMs, pulseDurationMs, roseA, roseABoost, roseBreathBase, roseBreathBoost, roseScale } = config
+
+        const point = (progress: number, detailScale: number) => {
+            const t = progress * Math.PI * 2
+            const a = roseA + detailScale * roseABoost
+            const r = a * (roseBreathBase + detailScale * roseBreathBoost) * Math.cos(2 * t)
+            return {
+                x: 50 + Math.cos(t) * r * roseScale,
+                y: 50 + Math.sin(t) * r * roseScale,
+            }
+        }
+
+        const getDetailScale = (time: number) => {
+            const pulseProgress = (time % pulseDurationMs) / pulseDurationMs
+            const pulseAngle = pulseProgress * Math.PI * 2
+            return 0.52 + ((Math.sin(pulseAngle + 0.55) + 1) / 2) * 0.48
+        }
+
+        const getRotation = (time: number) => {
+            if (!rotate) return 0
+            return -((time % rotationDurationMs) / rotationDurationMs) * 360
+        }
+
+        const buildPath = (detailScale: number, steps = 480) => {
+            return Array.from({ length: steps + 1 }, (_, index) => {
+                const p = point(index / steps, detailScale)
+                return `${index === 0 ? 'M' : 'L'} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`
+            }).join(' ')
+        }
+
+        const normalizeProgress = (progress: number) => {
+            return ((progress % 1) + 1) % 1
+        }
+
+        const getParticle = (index: number, progress: number, detailScale: number) => {
+            const tailOffset = index / (particleCount - 1)
+            const p = point(normalizeProgress(progress - tailOffset * trailSpan), detailScale)
+            const fade = Math.pow(1 - tailOffset, 0.56)
+            return {
+                x: p.x,
+                y: p.y,
+                radius: 0.9 + fade * 2.7,
+                opacity: 0.04 + fade * 0.96,
+            }
+        }
+
         let animationId: number
         const startedAt = performance.now()
 
