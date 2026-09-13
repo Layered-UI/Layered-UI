@@ -20,6 +20,8 @@ import { RoseTwoLoader } from './rose-two-loader'
 
 type ViewMode = 'preview' | 'code'
 
+type CopyHandler = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>
+
 interface BlockPreviewContextValue {
     mode: ViewMode
     setMode: (mode: ViewMode) => void
@@ -43,9 +45,9 @@ interface BlockPreviewContextValue {
     code?: string
     terminalCode: string
     copied: boolean
-    copy: (e?: React.MouseEvent) => void
+    copy: CopyHandler
     cliCopied: boolean
-    cliCopy: (e?: React.MouseEvent) => void
+    cliCopy: CopyHandler
     handleLove: () => void
     heartIconRef: React.RefObject<HeartIconHandle | null>
     resizablePanelRef: React.RefObject<ImperativePanelGroupHandle | null>
@@ -233,9 +235,15 @@ export const BlockPreviewProvider: React.FC<{
         iframeLoaded,
         loved, setLoved, reload, reloadKey, title, category, preview, code, terminalCode,
         copied,
-        copy: (e?: React.MouseEvent) => copy(e),
+        copy: async (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            if (e) await copy(e)
+            else await copy({} as React.MouseEvent<HTMLButtonElement, MouseEvent>)
+        },
         cliCopied,
-        cliCopy: (e?: React.MouseEvent) => cliCopy(e),
+        cliCopy: async (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            if (e) await cliCopy(e)
+            else await cliCopy({} as React.MouseEvent<HTMLButtonElement, MouseEvent>)
+        },
         handleLove, heartIconRef,
         resizablePanelRef, iframeRef, blockRef
     }
