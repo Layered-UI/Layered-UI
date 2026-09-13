@@ -560,4 +560,663 @@ npx vite-bundle-analyzer storybook-static
 
 ---
 
+## Advanced Patterns
+
+### Interaction Testing with Play Functions
+
+Use `play` functions for user interaction testing — integrates with **Vitest** via `@storybook/addon-vitest` and the **Interactions panel**.
+
+```tsx
+// components/ui/dialog.stories.tsx
+import type { Meta, StoryObj } from '@storybook/nextjs'
+import { within, userEvent } from 'storybook/test'
+import { expect } from 'vitest'
+
+import { Button } from './button'
+import { Dialog, DialogTrigger, DialogContent } from './dialog'
+
+const meta = {
+    title: 'ui/Dialog',
+    component: Dialog,
+    tags: ['autodocs'],
+} satisfies Meta<typeof Dialog>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const OpenAndClose: Story = {
+    render: () => (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="outline">Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <p>Dialog content here</p>
+                <Button id="close-btn" variant="ghost">Close</Button>
+            </DialogContent>
+        </Dialog>
+    ),
+    // Interaction test — runs in Storybook UI + Vitest
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        const openButton = canvas.getByRole('button', { name: /open dialog/i })
+        const closeButton = canvas.getByRole('button', { name: /close/i })
+
+        await userEvent.click(openButton)
+        await expect(canvas.getByRole('dialog')).toBeInTheDocument()
+
+        await userEvent.click(closeButton)
+        await expect(canvas.queryByRole('dialog')).not.toBeInTheDocument()
+    },
+}
+```
+
+**Run interaction tests:**
+```bash
+# In Storybook UI → Interactions panel
+# Or headless via Vitest
+npx vitest run --project=storybook
+```
+
+### Vitest Integration (`@storybook/addon-vitest`)
+
+Configure in `.storybook/main.ts`:
+
+```typescript
+import type { StorybookConfig } from '@storybook/nextjs'
+
+const config: StorybookConfig = {
+    // ...
+    addons: [
+        '@storybook/addon-a11y',
+        '@storybook/addon-docs',
+        '@storybook/addon-vitest',  // Add this
+    ],
+    // Vitest workspace config
+    viteFinal: async (config) => {
+        config.test = {
+            workspace: [
+                {
+                    extends: true,
+                    test: {
+                        name: 'storybook',
+                        browser: {
+                            enabled: true,
+                            provider: 'playwright',
+                            headless: true,
+                            instances: [{ browser: 'chromium' }],
+                        },
+                        include: ['**/*.stories.tsx'],
+                    },
+                },
+            ],
+        }
+        return config
+    },
+}
+```
+
+**Benefits:**
+- Run `play` functions in CI without browser UI
+- Component-level unit tests alongside stories
+- Shared test utilities (`userEvent`, `within`, `expect`)
+
+### Custom Decorators for Providers
+
+Wrap stories with context providers (theme, auth, i18n, etc.):
+
+```tsx
+// .storybook/preview.tsx
+import type { Preview, Decorator } from '@storybook/nextjs'
+import { ThemeProvider } from '@/components/theme-provider'
+import { ReactNode } from 'react'
+
+// Global decorator for all stories
+const withThemeProvider: Decorator = (Story) => (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Story />
+    </ThemeProvider>
+)
+
+// Per-story decorator for specific contexts
+export const decorators: Decorator[] = [withThemeProvider]
+
+// Or apply to specific stories via parameters
+const preview: Preview = {
+    decorators: [withThemeProvider],
+    parameters: {
+        // ...
+    },
+}
+```
+
+**Advanced: Multiple theme contexts**
+
+```tsx
+// .storybook/preview.tsx
+import { ThemeProvider } from '@/components/theme-provider'
+
+export const decorators = [
+    (Story) => (
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="min-h-screen">
+                <Story />
+            </div>
+        </ThemeProvider>
+    ),
+]
+
+// In story — override theme per story
+export const DarkMode: Story = {
+    decorators: [
+        (Story) => (
+            <ThemeProvider attribute="class" defaultTheme="dark">
+                <Story />
+            </ThemeProvider>
+        ),
+    ],
+}
+```
+
+---
+
+## MDX Documentation
+
+Write long-form documentation alongside stories using **MDX** (Markdown + JSX).
+
+### Component Documentation Page
+
+```mdx
+<!-- components/ui/Button.mdx -->
+import { Meta, Title, Primary, Canvas, ArgsTable } from '@storybook/addon-docs'
+import { Button } from './button'
+import * as ButtonStories from './button.stories'
+
+<Meta title="ui/Button" component={Button} />
+
+# Button
+
+A versatile button component with multiple variants, sizes, and states.
+
+## Design Principles
+
+- **Consistent API** — Follows Radix UI patterns with `asChild` polymorphism
+- **Accessible by default** — Focus management, ARIA attributes, keyboard support
+- **Composable** — Works with `Slot` for rendering as `<a>`, `<Link>`, etc.
+
+## Variants
+
+<Canvas>
+    <Primary story={ButtonStories.AllVariants} />
+</Canvas>
+
+## API Reference
+
+<ArgsTable story={ButtonStories.Default} />
+
+## Usage Examples
+
+### As a Link (Next.js)
+
+```tsx
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+
+<Button asChild>
+    <Link href="/dashboard">Go to Dashboard</Link>
+</Button>
+```
+
+### Loading State
+
+```tsx
+<Button disabled aria-busy="true">
+    <Loader className="mr-2 h-4 w-4 animate-spin" />
+    Processing...
+</Button>
+```
+
+## Accessibility
+
+- `type="button"` by default (prevents form submission)
+- `aria-disabled` when disabled
+- Focus ring visible via `focus-visible:ring-*`
+```
+
+### Design System Overview Page
+
+```mdx
+<!-- docs/design-system.mdx -->
+import { Meta, Title } from '@storybook/addon-docs'
+import { Canvas } from '@storybook/addon-docs/blocks'
+
+<Meta title="Design System/Overview" />
+
+# Layered UI Design System
+
+## Color Palette
+
+<Canvas>
+    <div className="grid grid-cols-4 gap-4">
+        <div className="p-4 bg-primary text-primary-foreground rounded">Primary</div>
+        <div className="p-4 bg-secondary text-secondary-foreground rounded">Secondary</div>
+        <div className="p-4 bg-destructive text-destructive-foreground rounded">Destructive</div>
+        <div className="p-4 bg-muted text-muted-foreground rounded">Muted</div>
+    </div>
+</Canvas>
+
+## Typography
+
+<Canvas>
+    <div className="space-y-4">
+        <h1 className="text-4xl font-bold">Heading 1</h1>
+        <h2 className="text-3xl font-semibold">Heading 2</h2>
+        <h3 className="text-2xl font-medium">Heading 3</h3>
+        <p className="text-base">Body text — Lorem ipsum dolor sit amet.</p>
+        <p className="text-sm text-muted-foreground">Small text — Secondary information.</p>
+    </div>
+</Canvas>
+
+## Spacing Scale
+
+<Canvas>
+    <div className="flex items-end gap-4 h-20">
+        {[
+            '0', '1', '2', '3', '4', '5', '6', '8', '10', '12', '16', '20', '24', '32'
+        ].map((space) => (
+            <div key={space} className="w-4 bg-primary rounded-t" style={{ height: `var(--spacing-${space})` }} />
+        ))}
+    </div>
+</Canvas>
+```
+
+---
+
+## Storybook Test Runner
+
+Run stories as **browser tests** with Playwright — catches visual + interaction regressions.
+
+### Setup
+
+```bash
+npm i -D @storybook/test-runner playwright
+npx playwright install --with-deps chromium
+```
+
+### Configuration
+
+```json
+// package.json
+{
+  "scripts": {
+    "test:storybook": "test-storybook --url http://localhost:6006"
+  }
+}
+```
+
+### Custom Test Matchers
+
+```typescript
+// .storybook/test-runner.ts
+import { test, expect } from '@storybook/test-runner'
+
+test('all stories render without console errors', async ({ page }) => {
+    const errors: string[] = []
+    page.on('console', (msg) => {
+        if (msg.type() === 'error') errors.push(msg.text())
+    })
+    page.on('pageerror', (err) => errors.push(err.message))
+
+    await page.goto('/iframe.html?id=ui-button--default')
+    await expect(page.locator('button')).toBeVisible()
+
+    expect(errors).toHaveLength(0)
+})
+
+test('dialog opens and closes via keyboard', async ({ page }) => {
+    await page.goto('/iframe.html?id=ui-dialog--open-and-close')
+
+    // Tab to trigger, press Enter
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Enter')
+    await expect(page.locator('[role="dialog"]')).toBeVisible()
+
+    // Press Escape to close
+    await page.keyboard.press('Escape')
+    await expect(page.locator('[role="dialog"]')).toBeHidden()
+})
+```
+
+### CI Integration
+
+```yaml
+# .github/workflows/test-storybook.yml
+name: Storybook Tests
+on: [push, pull_request]
+jobs:
+  test-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'npm' }
+      - run: npm ci
+      - run: npm run build-storybook
+      - run: npx http-server storybook-static -p 6006 &
+      - run: sleep 5
+      - run: npm run test:storybook
+```
+
+---
+
+## Snapshot Testing
+
+Capture component output for regression detection.
+
+### Storyshots (Jest/Vitest)
+
+```bash
+npm i -D @storybook/addon-storyshots @storybook/test-runner
+```
+
+```typescript
+// tests/storyshots.test.ts
+import { initStoryshots } from '@storybook/addon-storyshots'
+import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer'
+
+initStoryshots({
+    suite: 'Component Snapshots',
+    test: imageSnapshot({
+        storybookUrl: 'http://localhost:6006',
+        getMatchOptions: () => ({ threshold: 0.02 }), // 2% pixel diff
+    }),
+})
+```
+
+### Inline Snapshots with Vitest
+
+```tsx
+// components/ui/button.stories.tsx
+import { test, expect } from 'vitest'
+import { render } from '@testing-library/react'
+import { Button } from './button'
+
+test('Button renders with correct classes', () => {
+    const { container } = render(<Button variant="default">Click</Button>)
+    expect(container.firstChild).toMatchSnapshot()
+})
+```
+
+---
+
+## Internationalization (i18n) Testing
+
+Test components across locales without changing app config.
+
+### Per-Story Locale Override
+
+```tsx
+// components/ui/date-picker.stories.tsx
+import type { Meta, StoryObj } from '@storybook/nextjs'
+import { DatePicker } from './date-picker'
+
+const meta = {
+    title: 'ui/DatePicker',
+    component: DatePicker,
+    parameters: {
+        // Mock next-intl or similar
+        nextjs: {
+            locale: 'en-US',
+        },
+    },
+} satisfies Meta<typeof DatePicker>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const USEnglish: Story = {
+    args: { locale: 'en-US' },
+}
+
+export const German: Story = {
+    parameters: { nextjs: { locale: 'de-DE' } },
+    args: { locale: 'de-DE' },
+}
+
+export const Japanese: Story = {
+    parameters: { nextjs: { locale: 'ja-JP' } },
+    args: { locale: 'ja-JP' },
+}
+```
+
+### Global Locale Switcher Addon
+
+```typescript
+// .storybook/main.ts
+addons: [
+    // ...
+    'storybook-addon-i18n', // Custom addon for locale toolbar
+]
+```
+
+---
+
+## Performance Profiling
+
+### Story Render Timing
+
+```tsx
+// .storybook/preview.tsx
+import type { Preview } from '@storybook/nextjs'
+
+export const preview: Preview = {
+    parameters: {
+        // Measure render performance
+        performance: {
+            enabled: true,
+            // Log to console in dev
+            logger: (metrics) => {
+                console.log('[Storybook Perf]', metrics)
+            },
+        },
+    },
+}
+```
+
+### Bundle Analysis
+
+```bash
+# Analyze storybook bundle size
+npm run build-storybook
+npx vite-bundle-analyzer storybook-static
+
+# Output: interactive treemap of chunk sizes
+# Look for: duplicate deps, large components, unused code
+```
+
+### Lazy Loading Heavy Stories
+
+```tsx
+// Heavy component — lazy load to avoid blocking story index
+import { lazy, Suspense } from 'react'
+
+const HeavyChart = lazy(() => import('./chart').then((m) => ({ default: m.Chart })))
+
+export const HeavyChartStory: Story = {
+    render: () => (
+        <Suspense fallback={<div className="h-64 animate-pulse bg-muted" />}>
+            <HeavyChart data={largeDataset} />
+        </Suspense>
+    ),
+}
+```
+
+---
+
+## Design System Documentation Patterns
+
+### Component Status Badges
+
+```tsx
+// components/ui/button.stories.tsx
+const meta = {
+    title: 'ui/Button',
+    component: Button,
+    parameters: {
+        // Custom parameter for design system status
+        designSystem: {
+            status: 'stable', // 'stable' | 'beta' | 'deprecated' | 'experimental'
+            version: '2.1.0',
+            owner: '@design-team',
+            figmaUrl: 'https://figma.com/file/.../Button',
+            jiraTicket: 'DS-123',
+        },
+    },
+} satisfies Meta<typeof Button>
+```
+
+### Usage Guidelines in Docs
+
+```mdx
+<!-- components/ui/Button.mdx -->
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="ui/Button" />
+
+# Button
+
+## When to Use
+
+| Scenario | Recommended Variant |
+|----------|---------------------|
+| Primary action | `default` |
+| Destructive action | `destructive` |
+| Secondary action | `secondary` or `outline` |
+| Tertiary/Subtle action | `ghost` |
+| Navigation link | `link` (with `asChild`) |
+| Marketing CTA | `hero` |
+
+## Do's and Don'ts
+
+✅ **Do**
+- Use `asChild` with Next.js `<Link>` for navigation
+- Pair with `Loader` for async actions
+- Set `type="submit"` in forms
+
+❌ **Don't**
+- Use `variant="default"` for every button
+- Disable without `aria-busy` or loading indicator
+- Nest interactive elements (`<a>` inside `<button>`)
+```
+
+---
+
+## Custom Addons (Advanced)
+
+Build project-specific addons for team workflows.
+
+### Example: Design Token Inspector
+
+```typescript
+// .storybook/addons/design-tokens/panel.tsx
+import { useAddonState } from '@storybook/api'
+import { AddonPanel } from '@storybook/components'
+
+export const DesignTokensPanel = () => {
+    const [tokens, setTokens] = useAddonState('design-tokens', {})
+
+    // Extract CSS custom properties from document
+    const cssVars = Array.from(document.styleSheets)
+        .flatMap((sheet) => {
+            try {
+                return Array.from(sheet.cssRules || [])
+            } catch {
+                return []
+            }
+        })
+        .filter((rule): rule is CSSStyleRule => rule.type === 1)
+        .flatMap((rule) => Array.from(rule.style))
+        .filter((prop) => prop.startsWith('--color-') || prop.startsWith('--spacing-'))
+
+    return (
+        <AddonPanel>
+            <h3>Design Tokens</h3>
+            <dl className="grid gap-2">
+                {cssVars.map((prop) => (
+                    <div key={prop} className="flex items-center gap-2">
+                        <dt className="font-mono text-xs">{prop}</dt>
+                        <dd className="font-mono text-xs flex-1">
+                            <span
+                                style={{
+                                    display: 'inline-block',
+                                    width: '1rem',
+                                    height: '1rem',
+                                    backgroundColor: `var(${prop})`,
+                                    border: '1px solid var(--border)',
+                                }}
+                            />
+                            <code>{getComputedStyle(document.documentElement).getPropertyValue(prop).trim()}</code>
+                        </dd>
+                    </div>
+                ))}
+            </dl>
+        </AddonPanel>
+    )
+}
+```
+
+Register in `.storybook/main.ts`:
+
+```typescript
+export default {
+    // ...
+    addons: [
+        // ...
+        './.storybook/addons/design-tokens/panel.tsx',
+    ],
+}
+```
+
+---
+
+## Maintenance Checklist
+
+### Monthly
+
+- [ ] Update Storybook + addons to latest patch
+- [ ] Review Chromatic baselines — accept intentional changes
+- [ ] Audit story coverage vs. component inventory
+- [ ] Check bundle size trends
+
+### Quarterly
+
+- [ ] Major version upgrade (test in branch first)
+- [ ] Review addon relevance — remove unused
+- [ ] Update documentation for new patterns
+- [ ] Performance benchmark (cold start, HMR)
+
+### On Component Change
+
+- [ ] Add/update stories for new props/variants
+- [ ] Verify a11y panel passes
+- [ ] Run interaction tests (`play` functions)
+- [ ] Update MDX docs if API changed
+
+---
+
+## Quick Reference Card
+
+| Task | Command |
+|------|---------|
+| Start dev server | `npm run storybook` |
+| Build static | `npm run build-storybook` |
+| Type-check stories | `npx tsc --noEmit -p .storybook/tsconfig.json` |
+| Run a11y audit | Open ♿ panel in Storybook UI |
+| Run interaction tests | `npx vitest run --project=storybook` |
+| Visual regression | `npx chromatic --project-token=$TOKEN` |
+| Analyze bundle | `npx vite-bundle-analyzer storybook-static` |
+| Test runner | `npm run test:storybook` |
+
+---
+
 *Generated for Layered UI v0.1.0 — Last updated: 2026-09-11*
