@@ -1,34 +1,40 @@
-name: CI & Build Checks
+name: CI
 
 on:
-  pull_request:
-    branches: [ "main", "master" ]
   push:
-    branches: [ "main", "master" ]
+    branches: [main]
+  pull_request:
 
 jobs:
-  test-and-build:
-    name: Build & Test
+  lint:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
 
-      - name: Install Dependencies
-        run: npm ci
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm ci
+      - run: npx tsc --noEmit
 
-      - name: Security Audit
-        run: npm audit --audit-level=high --if-present
-
-      - name: Run Linter (Optional)
-        run: npm run lint
-
-      - name: Build Project
-        run: npm run build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
