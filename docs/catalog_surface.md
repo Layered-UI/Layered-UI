@@ -146,20 +146,12 @@ Keeping these features centralized ensures a consistent experience across every 
 
 To improve performance, previews are loaded lazily.
 
-```text
-Catalog Page
-      │
-      ▼
-Intersection Observer
-      │
-      ▼
-Load Preview
-      │
-      ▼
-Measure Height
-      │
-      ▼
-Cache Layout
+```mermaid
+flowchart TD
+      A[Catalog Page] --> B[Intersection Observer]
+      B --> C[Load Preview]
+      C --> D[Measure Height]
+      D --> E[Cache Layout]
 ```
 
 This strategy reduces unnecessary rendering while improving scrolling performance on pages containing many components.
