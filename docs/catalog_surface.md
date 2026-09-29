@@ -191,17 +191,9 @@ Syntax highlighting is handled through the shared code rendering infrastructure.
 
 The catalog generates installation commands automatically.
 
-```text
-Browse Block
-      │
-      ▼
-Copy Install Command
-      │
-      ▼
-Run CLI
-      │
-      ▼
-Install Component
+```mermaid
+flowchart TD
+A[Browse Block] --> B[Copy Install Command] --> C[Run CLI] --> D[Install Component]
 ```
 
 Installation commands are derived from the same metadata that powers the catalog, reducing duplication and configuration errors.
