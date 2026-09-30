@@ -260,6 +260,14 @@ export const blocks: Block[] = [
     },
 
     {
+        slug: 'contact',
+        title: 'three',
+        category: 'contact',
+        preview: '/preview/contact/three',
+        get code() { return loadCode('app/preview/contact/three/page.tsx') },
+    },
+
+    {
         slug: 'faqs',
         title: 'one',
         category: 'faqs',
