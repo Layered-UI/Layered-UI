@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Layered UI",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"npm",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}
