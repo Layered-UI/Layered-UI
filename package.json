@@ -78,7 +78,7 @@
     "shiki": "^2.4.1",
     "storybook": "^10.5.5",
     "tailwindcss": "^4.0.0",
-    "typescript": "^5",
+    "typescript": "^7",
     "vite": "^8.2.0",
     "vitest": "^4.1.10"
   }
